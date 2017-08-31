@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-node('linux') {
+node('trusty_qt59') {
 
 
     currentBuild.result = "SUCCESS"
@@ -30,10 +30,6 @@ node('linux') {
 
         stage( 'Checkout' ) {
             checkout scm
-            checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], \
-            browser: [$class: 'GithubWeb', repoUrl: ''], doGenerateSubmoduleConfigurations: false, \
-            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-template']], submoduleCfg: [], \
-            userRemoteConfigs: [[url: 'https://github.com/appimage-packages/appimage-template']]]
             checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/refactoring_timeline']], doGenerateSubmoduleConfigurations: false, \
             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kdenlive']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/kdenlive']]]
        }
@@ -56,6 +52,7 @@ node('linux') {
             step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-tooling/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
       }
    }
+}
 
 
 
