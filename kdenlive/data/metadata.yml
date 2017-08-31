@@ -1,0 +1,164 @@
+name: kdenlive
+binary: kdenlive
+packages:
+  - libv4l2rds0
+  - libsdl2-dev
+  - fftw-dev
+  - libsamplerate0-dev
+  - libsdl2-dev
+  - libsox-dev
+  - libass-dev
+  - dbus-x11
+  - clang-3.8
+  - libcv-dev
+  - libgavl-dev
+  - libhighgui-dev
+  - libcvaux-dev
+  - dvdauthor
+  - libgsm1-dev
+  - libmp3lame-dev
+  - libopencore-amrnb-dev
+  - libopencore-amrwb-dev
+  - libschroedinger-dev
+  - libxvidcore-dev
+  - speech-dispatcher-festival
+  - vlc
+  - genisoimage
+frameworks:
+  build_kf5: true
+  frameworks:
+    - extra-cmake-modules
+    - kcoreaddons
+    - ki18n
+    - kitemviews
+    - kconfig
+    - polkit-qt-1
+    - kauth
+    - kcodecs
+    - karchive
+    - kwidgetsaddons
+    - kcompletion
+    - kdbusaddons
+    - kdebugsettings
+    - kdoctools
+    - kguiaddons
+    - kconfigwidgets
+    - kiconthemes
+    - kwindowsystem
+    - kcrash
+    - kservice
+    - sonnet
+    - ktextwidgets
+    - kglobalaccel
+    - attica
+    - kxmlgui
+    - solid
+    - kbookmarks
+    - kjobwidgets
+    - phonon
+    - phonon-gstreamer
+    - knotifications
+    - gpgmepp
+    - kwallet
+    - kio
+    - knewstuff
+    - breeze-icons
+    - kactivities
+    - kpackage
+    - kdeclarative
+    - kwayland
+    - plasma-framework
+    - kdecoration
+    - breeze
+    - knotifyconfig
+    - kfilemetadata
+    - frameworkintegration
+type: git
+url: http://anongit.kde.org/kdenlive
+buildsystem: cmake
+buildoptions: '-DCMAKE_INSTALL_PREFIX:PATH=/opt/usr -DKDE_INSTALL_SYSCONFDIR=/opt/etc -DBUILD_TESTING=OFF'
+dependencies:
+  - cpan:
+      build:
+        buildsystem: custom
+        buildoptions: cpan URI::Escape
+      depname: cpan
+      source:
+        type: none
+        url: ''
+  - libvpx:
+      build:
+        buildsystem: make
+        buildoptions: '--enable-vp9 --enable-static --enable-shared --enable-postproc --enable-multithread --enable-runtime-cpu-detect --disable-install-docs --disable-debug-libs --disable-examples --disable-unit-tests'
+      depname: libvpx-1.6.1
+      source:
+        type: bz2
+        url: http://storage.googleapis.com/downloads.webmproject.org/releases/webm/libvpx-1.6.1.tar.bz2
+  - opencv:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/opencv.sh
+      depname: opencv
+      source:
+        type: none
+        url: ''
+  - frei0r-plugins:
+      build:
+        buildsystem: cmake
+        buildoptions: '-DCMAKE_INSTALL_PREFIX=/usr  \
+      -DCMAKE_BUILD_TYPE=Release     \
+      -DOpenCV_DIR=/opt/usr/share/OpenCV \
+      -DBUILD_SHARED_LIBS=OFF \
+      -Wno-dev'
+      depname: frei0r-plugins-1.6.1
+      source:
+        type: gz
+        url: 'https://files.dyne.org/frei0r/frei0r-plugins-1.6.1.tar.gz'
+  - nasm:
+      build:
+        buildsystem: make
+        buildoptions: '--prefix=/opt/usr'
+      depname: nasm-2.13.01
+      source:
+        type: xz
+        url: http://www.nasm.us/pub/nasm/releasebuilds/2.13.01/nasm-2.13.01.tar.xz
+  - x264:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/x264.sh
+      depname: last_x264
+      source:
+        type: none
+        url: ''
+  - x265:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/x265.sh
+      source:
+        type: none
+        url: ''
+  - ffmpeg:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/ffmpeg.sh
+      depname: ffmepg
+      source:
+        type: none
+        url: ''
+  - sdl:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/sdl.sh
+      depname: sdl
+      source:
+        type: none
+        url: ''
+  - mlt:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/mlt.sh
+        insource: false
+      depname: mlt
+      source:
+        type: none
+        url: ''
