@@ -25,16 +25,11 @@ node('linux') {
 
     currentBuild.result = "SUCCESS"
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), \
-   [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/appimage-packages/kdenlive/'], pipelineTriggers([cron('H H(0-2) * * *'), [$class: 'GitHubPushTrigger'], pollSCM('H/15 * * * *')])])
 
     try {
 
         stage( 'Checkout' ) {
             checkout scm
-            checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], \
-            browser: [$class: 'GithubWeb', repoUrl: ''], doGenerateSubmoduleConfigurations: false, \
-            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-template']], submoduleCfg: [], \
-            userRemoteConfigs: [[url: 'https://github.com/appimage-packages/appimage-template']]]
             checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/refactoring_timeline']], doGenerateSubmoduleConfigurations: false, \
             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kdenlive']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/kdenlive']]]
        }
@@ -54,7 +49,7 @@ node('linux') {
          sourceFile: 'appimage/*.zsync', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], pluginFailureResultConstraint: 'UNSTABLE', profileName: 'ds9-apps', userMetadata: []])
        }
        stage('Tests') {
-            step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+            step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-tooling/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
       }
    }
 
