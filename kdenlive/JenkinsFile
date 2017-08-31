@@ -24,7 +24,7 @@ node('trusty_qt59') {
 
 
     currentBuild.result = "SUCCESS"
-   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5'))
+   properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')))
 
 
 
