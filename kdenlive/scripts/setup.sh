@@ -28,4 +28,4 @@ apt-get update
 apt-get -y install gcc-5 g++-5
 
 update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
-cd /in/ && rspec appimage-template/spec/recipe_rspec.rb --fail-fast
+cd /in/ && rspec appimage-tooling/appimage-template/spec/recipe_rspec.rb --fail-fast

@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-node('linux') {
+node('trusty-qt59-kf5') {
 
 
     currentBuild.result = "SUCCESS"
