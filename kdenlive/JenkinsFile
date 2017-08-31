@@ -26,7 +26,7 @@ node('trusty_qt59') {
     currentBuild.result = "SUCCESS"
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')), \
 
-    try {
+
 
         stage( 'Checkout' ) {
             checkout scm
@@ -51,7 +51,7 @@ node('trusty_qt59') {
        stage('Tests') {
             step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-tooling/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
       }
-   }
+
 }
 
 
