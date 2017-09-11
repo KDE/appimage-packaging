@@ -33,7 +33,7 @@ node('trusty_qt59') {
             checkout([$class: 'GitSCM', branches: [[name: 'master']], \
             doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-packaging']], submoduleCfg: [], \
             userRemoteConfigs: [[url: 'http://anongit.kde.org/appimage-packaging']]])
-            checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timelin']], \
+            checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timeline']], \
             doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kdenlive']], submoduleCfg: [], \
             userRemoteConfigs: [[url: 'http://anongit.kde.org/kdenlive']]])
        }
