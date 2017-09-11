@@ -30,10 +30,10 @@ node('trusty_qt59') {
 
         stage( 'Checkout' ) {
             checkout scm
-            checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timeline']], \
+            checkout([$class: 'GitSCM', branches: [[name: 'master']], \
             doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-packaging']], submoduleCfg: [], \
             userRemoteConfigs: [[url: 'http://anongit.kde.org/appimage-packaging']]])
-            checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timeline']], \
+            checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timelin']], \
             doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kdenlive']], submoduleCfg: [], \
             userRemoteConfigs: [[url: 'http://anongit.kde.org/kdenlive']]])
        }
