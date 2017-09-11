@@ -31,24 +31,23 @@ node('trusty_qt59') {
         stage( 'Checkout' ) {
             checkout scm
             checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timeline']], \
+            doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-packaging']], submoduleCfg: [], \
+            userRemoteConfigs: [[url: 'http://anongit.kde.org/appimage-packaging']]])
+            checkout([$class: 'GitSCM', branches: [[name: 'refactoring_timeline']], \
             doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kdenlive']], submoduleCfg: [], \
             userRemoteConfigs: [[url: 'http://anongit.kde.org/kdenlive']]])
        }
-        stage( 'Setup' ) {
-            sh 'rbenv local 2.3.0 && bundle install'
-            def WORKSPACE=pwd()
-        }
         stage( 'Build' ) {
-            sh 'bundle exec deploy.rb'
+            sh 'scripts/setup.sh'
        }
-       stage('Copy Artifacts') {
-          step([$class: 'S3BucketPublisher', consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "ds9-apps/${JOB_NAME}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, \
-          managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'eu-central-1', showDirectlyInBrowser: true, \
-          sourceFile: 'appimage/*.AppImage', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], pluginFailureResultConstraint: 'UNSTABLE', profileName: 'ds9-apps', userMetadata: []])
-         step([$class: 'S3BucketPublisher', consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "ds9-apps/${JOB_NAME}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, \
-         managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'eu-central-1', showDirectlyInBrowser: true, \
-         sourceFile: 'appimage/*.zsync', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], pluginFailureResultConstraint: 'UNSTABLE', profileName: 'ds9-apps', userMetadata: []])
-       }
+    //    stage('Copy Artifacts') {
+    //       step([$class: 'S3BucketPublisher', consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "ds9-apps/${JOB_NAME}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, \
+    //       managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'eu-central-1', showDirectlyInBrowser: true, \
+    //       sourceFile: 'appimage/*.AppImage', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], pluginFailureResultConstraint: 'UNSTABLE', profileName: 'ds9-apps', userMetadata: []])
+    //      step([$class: 'S3BucketPublisher', consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "ds9-apps/${JOB_NAME}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, \
+    //      managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'eu-central-1', showDirectlyInBrowser: true, \
+    //      sourceFile: 'appimage/*.zsync', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], pluginFailureResultConstraint: 'UNSTABLE', profileName: 'ds9-apps', userMetadata: []])
+    //    }
        stage('Tests') {
             step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-tooling/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
       }
