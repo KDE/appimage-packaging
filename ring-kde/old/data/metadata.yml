@@ -1,0 +1,149 @@
+name: ring-kde
+binary: ring-kde
+packages:
+  - libpulse-dev
+  - libsamplerate0-dev
+  - libgsm1-dev
+  - libspeex-dev
+  - libtool
+  - libdbus-1-dev
+  - libasound2-dev
+  - libopus-dev
+  - libspeexdsp-dev
+  - libexpat1-dev
+  - libpcre3-dev
+  - libyaml-cpp-dev
+  - libboost-dev
+  - libdbus-c++-dev
+  - libsndfile1-dev
+  - libsrtp-dev
+  - libjack-dev
+  - libupnp-dev
+  - libudev-dev
+  - yasm
+  - uuid-dev
+  - libgnutls-dev
+  - libjsoncpp-dev
+  - libva-dev
+  - libgtk-3-0
+  - libgtk-3-dev
+  - libclutter-gtk-1.0-0
+  - gnome-icon-theme-symbolic
+  - libebook-1.2-14
+  - libnotify4
+  - libical-dev
+frameworks:
+  build_kf5: true
+  frameworks:
+    - extra-cmake-modules
+    - kcoreaddons
+    - ki18n
+    - kitemviews
+    - kconfig
+    - polkit-qt-1
+    - kauth
+    - kcodecs
+    - karchive
+    - kdoctools
+    - kguiaddons
+    - kwidgetsaddons
+    - kconfigwidgets
+    - kiconthemes
+    - kcompletion
+    - kwindowsystem
+    - kcrash
+    - kdbusaddons
+    - kservice
+    - sonnet
+    - ktextwidgets
+    - kglobalaccel
+    - attica
+    - kxmlgui
+    - solid
+    - kbookmarks
+    - kjobwidgets
+    - phonon
+    - phonon-gstreamer
+    - knotifications
+    - gpgmepp
+    - kwallet
+    - kio
+    - knewstuff
+    - breeze-icons
+    - kinit
+    - knotifyconfig
+    - kcontacts
+    - kitemmodels
+    - kdesignerplugin
+    - akonadi
+    - kmime
+    - kparts
+    - kunitconversion
+    - kded
+    - kdelibs4support
+    - kemoticons
+    - kcalcore
+    - akonadi-mime
+    - akonadi-contacts
+type: git
+url: https://gerrit-ring.savoirfairelinux.com/ring-daemon
+buildsystem: custom
+buildoptions: /bin/bash /in/scripts/ring.sh
+dependencies:
+  - cpan:
+      build:
+        buildsystem: custom
+        buildoptions: cpan URI::Escape
+      depname: cpan
+      source:
+        type: none
+        url: ''
+  - asio:
+      build:
+        buildsystem: custom
+        buildoptions: 'cd asio && ./autogen.sh && ./configure --prefix=/opt/usr && make V=1 -j8 && make install'
+      depname: asio
+      source:
+        type: git
+        url: https://github.com/chriskohlhoff/asio
+        branch: master
+  - kashmir:
+      build:
+        buildsystem: custom
+        buildoptions: 'mv /app/src/kashmir-dependency/kashmir /opt/usr/include/kashmir'
+      depname: kashmir-dependency
+      source:
+        type: git
+        url: https://github.com/Corvusoft/kashmir-dependency
+        branch: master
+  - restbed:
+      build:
+        buildsystem: cmake
+        buildoptions: '-DCMAKE_INSTALL_PREFIX:PATH=/opt/usr -DBUILD_TESTS=NO -DBUILD_EXAMPLES=NO -DBUILD_SSL=NO -DBUILD_SHARED=ON'
+      depname: restbed
+      source:
+        type: git
+        url: https://github.com/Corvusoft/restbed
+        branch: master
+  - x264:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/x264.sh
+      source:
+        type: none
+        url: ''
+  - x265:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/x265.sh
+      source:
+        type: none
+        url: ''
+  - ffmpeg:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/ffmpeg.sh
+      depname: ffmepg
+      source:
+        type: none
+        url: ''
