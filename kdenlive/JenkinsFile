@@ -38,7 +38,7 @@ node('trusty_qt59') {
             userRemoteConfigs: [[url: 'http://anongit.kde.org/kdenlive']]])
        }
         stage( 'Build' ) {
-            sh 'scripts/setup.sh'
+            sh 'appimage-packaging/kdenlive/scripts/setup.sh'
        }
     //    stage('Copy Artifacts') {
     //       step([$class: 'S3BucketPublisher', consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "ds9-apps/${JOB_NAME}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, \
