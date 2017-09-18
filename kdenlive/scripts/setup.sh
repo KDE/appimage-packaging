@@ -21,6 +21,8 @@ export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PA
 export WORKSPACE=`pwd`
 echo $WORKSPACE
 echo $PATH
+pwd
+whoami
 ls -l
 rbenv local 2.4.1
 rspec appimage-tooling/appimage-template/spec/recipe_rspec.rb --fail-fast
