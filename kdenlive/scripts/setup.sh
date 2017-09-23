@@ -19,6 +19,7 @@
 # License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PATH
 export WORKSPACE=`pwd`
+export PROJECT='kdenlive'
 echo $WORKSPACE
 
 echo $PATH
