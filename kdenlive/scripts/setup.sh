@@ -27,5 +27,5 @@ whoami
 ls -l
 rbenv local 2.4.1
 gem install rspec
-cd ~ && ls -la && rbenv local 2.4.1 && gem install bundler && bundle install --binstubs && bundle show rspec
-rspec workspace/appimage-tooling/appimage-template/spec/recipe_rspec.rb --fail-fast
+rbenv local 2.4.1 && gem install bundler && bundle install --binstubs && bundle show rspec
+rspec appimage-tooling/appimage-template/spec/recipe_rspec.rb --fail-fast
