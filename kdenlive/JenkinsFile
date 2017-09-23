@@ -29,7 +29,9 @@ node('trusty_qt59') {
     try {
 
         stage( 'Checkout' ) {
-            checkout scm
+            checkout([$class: 'GitSCM', branches: [[name: 'master']], \
+            doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-tooling']], submoduleCfg: [], \
+            userRemoteConfigs: [[url: 'http://anongit.kde.org/appimage-tooling']]])
             checkout([$class: 'GitSCM', branches: [[name: 'master']], \
             doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-packaging']], submoduleCfg: [], \
             userRemoteConfigs: [[url: 'http://anongit.kde.org/appimage-packaging']]])
