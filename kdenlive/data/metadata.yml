@@ -125,7 +125,7 @@ dependencies:
   - x264:
       build:
         buildsystem: custom
-        buildoptions:  "/bin/bash -xe" + "ENV["WORKSPACE"]" + '/appimage-packaging/kdenlive/scripts/x264.sh'
+        buildoptions:  "/bin/bash -xe appimage-packaging/kdenlive/scripts/x264.sh"
       depname: last_x264
       source:
         type: none
@@ -133,14 +133,14 @@ dependencies:
   - x265:
       build:
         buildsystem: custom
-        buildoptions:  "/bin/bash -xe" + "ENV["WORKSPACE"]" + '/appimage-packaging/kdenlive/scripts/x265.sh'
+        buildoptions:  "/bin/bash -xe /appimage-packaging/kdenlive/scripts/x265.sh"
       source:
         type: none
         url: ''
   - ffmpeg:
       build:
         buildsystem: custom
-        buildoptions:  "/bin/bash -xe" + "ENV["WORKSPACE"]" + '/appimage-packaging/kdenlive/scripts/ffmpeg.sh'
+        buildoptions:  "/bin/bash -xe appimage-packaging/kdenlive/scripts/ffmpeg.sh"
       depname: ffmepg
       source:
         type: none
@@ -148,7 +148,7 @@ dependencies:
   - sdl:
       build:
         buildsystem: custom
-        buildoptions:  "/bin/bash -xe" + "ENV["WORKSPACE"]" + '/appimage-packaging/kdenlive/scripts/sdl.sh'
+        buildoptions:  "/bin/bash -xe appimage-packaging/kdenlive/scripts/sdl.sh"
       depname: sdl
       source:
         type: none
@@ -156,7 +156,7 @@ dependencies:
   - mlt:
       build:
         buildsystem: custom
-        buildoptions: "/bin/bash -xe" + "ENV["WORKSPACE"]" + '/appimage-packaging/kdenlive/scripts/mlt.sh'
+        buildoptions: "/bin/bash -xe appimage-packaging/kdenlive/scripts/mlt.sh"
         insource: false
       depname: mlt
       source:
