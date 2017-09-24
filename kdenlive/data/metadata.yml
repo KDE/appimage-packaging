@@ -24,6 +24,9 @@ packages:
   - speech-dispatcher-festival
   - vlc
   - genisoimage
+  - libpolkit-agent-1-dev
+  - libpolkit-backend-1-dev
+  - libpolkit-gobject-1-dev
 frameworks:
   build_kf5: true
   frameworks:
