@@ -97,7 +97,7 @@ dependencies:
   - opencv:
       build:
         buildsystem: custom
-        buildoptions: /bin/bash appimage-packaging/kdenlive/scripts/opencv.sh
+        buildoptions: /bin/bash /home/jenkins/workspace/kdenlive-master-appimage/appimage-packaging/kdenlive/scripts/opencv.sh
       depname: opencv
       source:
         type: none
