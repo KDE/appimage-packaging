@@ -59,7 +59,7 @@ cd SDL-1.2.15
 if ./configure --prefix=/opt/usr; then
 
 make
-make install
+sudo make install
 
 else
 	error_exit "$LINENO: An error has occurred.. Aborting."

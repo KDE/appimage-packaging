@@ -35,7 +35,7 @@ if cmake .. -DCMAKE_INSTALL_PREFIX:PATH=$PREFIX; then
 make -j8
 
 # install
-make install
+sudo make install
 
 else
 	error_exit "$LINENO: An error has occurred.. Aborting."

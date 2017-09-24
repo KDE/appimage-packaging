@@ -19,7 +19,7 @@ git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
 if cd ffmpeg; then
 	 ./configure --prefix="/opt/usr" --disable-doc --disable-ffserver --enable-gpl --enable-version3 --enable-shared --enable-static --enable-debug --enable-pthreads --enable-runtime-cpudetect --enable-frei0r --enable-avfilter \
 	 --enable-libvpx --enable-libx264 --enable-libx265 && \
-	  make -j4 && make install
+	  make -j4 && sudo make install
 		ls /opt/usr/include/
 else
 	error_exit "$LINENO: An error has occurred.. Aborting."

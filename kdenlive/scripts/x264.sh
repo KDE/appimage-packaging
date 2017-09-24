@@ -17,7 +17,7 @@ else
 fi
 if cd x264; then
 	  ./configure --enable-static --enable-shared --prefix=/opt/usr
-	  make -j4 && make install
+	  make -j4 && sudo make install
 else
 	error_exit "$LINENO: An error has occurred.. Aborting."
 fi
