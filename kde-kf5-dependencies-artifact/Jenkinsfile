@@ -32,7 +32,7 @@ node('linux') {
                 checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                 extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                 checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kde-kf5-dependencies-artifact/appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
             }
             stage( 'Setup' ) {
                 sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
