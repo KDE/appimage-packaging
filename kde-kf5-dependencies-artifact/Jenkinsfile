@@ -73,11 +73,10 @@ node('linux') {
                 step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
 
-            stage "Archive build output" {
-
+            stage('Archive build output') {
               // Archive the build output artifacts.
-              archiveArtifacts artifacts: 'artifacts/*.gz'
-        }
+              step([$class: 'archiveArtifacts', artifacts: 'artifacts/*.gz'])
+            }
 
         catch (err) {
 
