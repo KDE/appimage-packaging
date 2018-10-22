@@ -63,10 +63,11 @@ node('linux') {
             stage( 'Build' ) {
                 sh '''#!/usr/bin/env bash
                     set -e
+                    cd kde-kf5-dependencies-artifact 
                     export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                     eval "$(rbenv init -)"
                     rbenv local 2.4.1
-                    cd kde-kf5-dependencies-artifact && bundle exec deploy.rb
+                    bundle exec deploy.rb
                     '''
             }
             stage('Tests') {
