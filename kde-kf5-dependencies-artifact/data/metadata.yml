@@ -1,0 +1,66 @@
+name: kf5deps
+binary: kf5deps
+packages:
+frameworks:
+  build_kf5: true
+  frameworks:
+    - polkit-qt-1
+    - extra-cmake-modules
+    - kcoreaddons
+    - ki18n
+    - kitemviews
+    - kconfig
+    - kauth
+    - kcodecs
+    - karchive
+    - kdoctools
+    - kguiaddons
+    - kwidgetsaddons
+    - kconfigwidgets
+    - kiconthemes
+    - kcompletion
+    - kwindowsystem
+    - kcrash
+    - kdbusaddons
+    - kservice
+    - sonnet
+    - ktextwidgets
+    - kglobalaccel
+    - kxmlgui
+    - solid
+    - kbookmarks
+    - kjobwidgets
+    - phonon
+    - phonon-gstreamer
+    - knotifications
+    - kwallet
+    - kio
+    - kparts
+    - kpty
+    - attica
+    - knewstuff
+    - kitemmodels
+    - kplotting
+    - kdewebkit
+    - kdesignerplugin
+    - syntax-highlighting
+    - prison
+    - kemoticons
+    - kpackage
+    - kdeclarative
+    - kcmutils
+    - kdecoration
+    - breeze
+    - kactivities
+    - kirigami
+    - kwayland
+    - plasma-framework
+    - threadweaver
+    - krunner
+    - kunitconversion
+    - kinit
+    - kded
+    - kdelibs4support
+    - knotifyconfig
+    - kross
+    - ktexteditor
