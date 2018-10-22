@@ -24,8 +24,7 @@ node('linux') {
 
 
     currentBuild.result = "SUCCESS"
-    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')), disableConcurrentBuilds(), \
-    pollSCM('H/15 * * * *')])])
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')), disableConcurrentBuilds(), pollSCM('H/15 * * * *')])
 
     try {
 
