@@ -1,0 +1,5 @@
+#!/bin/sh
+DIR="\`dirname \"\$0\"\`"
+HERE="\`( cd \"\$DIR\" && pwd )\`"
+
+exec \$HERE/usr/sbin/mysqld $@
