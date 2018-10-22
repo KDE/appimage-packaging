@@ -54,7 +54,7 @@ node('linux') {
                        fi
                        eval "$(rbenv init -)"
                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                       bundle install
+                       cd kde-kf5-dependencies-artifact && bundle install
                    fi
 
                 '''
