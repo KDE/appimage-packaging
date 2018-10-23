@@ -22,6 +22,10 @@ THE SOFTWARE.
 
 pipeline {
     agent { node { label 'linux' } }
+    environment {
+        WORKSPACE=pwd()
+        PATH=/opt/usr/bin:/$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+    }
     stages {
             stage( 'Checkout' ) {
                 steps {
@@ -56,7 +60,6 @@ pipeline {
                         fi
 
                         '''
-                        def WORKSPACE=pwd()
                     }
             }
             stage( 'Build' ) {
