@@ -20,14 +20,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-node('linux') {
-
-     wrap([$class: 'TimestamperBuildWrapper']) {
-        currentBuild.result = "SUCCESS"
-        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')), disableConcurrentBuilds()])
-
-        try {
-
+pipeline {
+    agent { node { label 'linux' } }
+    stages {
             stage( 'Checkout' ) {
                 checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                 extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
@@ -73,18 +68,10 @@ node('linux') {
             stage('Tests') {
                 step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kde-kf5-dependencies-artifact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
-
-        catch (err) {
-
-            currentBuild.result = "FAILURE"
-
-                echo "FAILURE"
-            throw err
         }
-    }
-    post {
-            always {
-                    archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
+            post {
+                    always {
+                                archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
+                    }
             }
-    }
 }
