@@ -24,48 +24,55 @@ pipeline {
     agent { node { label 'linux' } }
     stages {
             stage( 'Checkout' ) {
-                checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
-                checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kde-kf5-dependencies-artifact/appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                steps {
+                    checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
+                    checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kde-kf5-dependencies-artifact/appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                }
             }
             stage( 'Setup' ) {
-                sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
-                sh '''#!/usr/bin/env bash
-                    set -e
-                    export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
-                   if [[ ! -d ~/.rbenv ]] ; then
-                       git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-                       git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-                       if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
-                        rbenv install 2.4.1
-                       fi
-                       eval "$(rbenv init -)"
-                       rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                   else
-                       echo "Rbenv exists, moving on"
-                       if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
-                        rbenv install 2.4.1
-                       fi
-                       eval "$(rbenv init -)"
-                       rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                       cd kde-kf5-dependencies-artifact && bundle install
-                   fi
+                steps {
+                    sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
+                        if [[ ! -d ~/.rbenv ]] ; then
+                        git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                        git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
+                            rbenv install 2.4.1
+                        fi
+                        eval "$(rbenv init -)"
+                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                        else
+                        echo "Rbenv exists, moving on"
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
+                            rbenv install 2.4.1
+                        fi
+                        eval "$(rbenv init -)"
+                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                        cd kde-kf5-dependencies-artifact && bundle install
+                        fi
 
-                '''
-                def WORKSPACE=pwd()
+                        '''
+                        def WORKSPACE=pwd()
+                    }
             }
             stage( 'Build' ) {
-                sh '''#!/usr/bin/env bash
-                    set -e
-                    cd kde-kf5-dependencies-artifact
-                    export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
-                    eval "$(rbenv init -)"
-                    rbenv local 2.4.1
-                    bundle exec deploy.rb
-                    '''
+                steps {
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        cd kde-kf5-dependencies-artifact
+                        export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
+                        eval "$(rbenv init -)"
+                        rbenv local 2.4.1
+                        bundle exec deploy.rb
+                        '''
+                    }
             }
             stage('Tests') {
+                steps {
                 step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kde-kf5-dependencies-artifact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
         }
