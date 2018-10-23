@@ -77,8 +77,8 @@ node('linux') {
              post {
                  always {
                      archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
-        }
-    }
+                 }
+             }
 
         catch (err) {
 
