@@ -24,7 +24,7 @@ pipeline {
     agent { node { label 'linux' } }
     environment {
         WORKSPACE=pwd()
-        PATH=/opt/usr/bin:/$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
+        PATH=/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH
     }
     stages {
             stage( 'Checkout' ) {
