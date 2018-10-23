@@ -74,12 +74,6 @@ node('linux') {
                 step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kde-kf5-dependencies-artifact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
 
-             post {
-                 always {
-                     archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
-                 }
-             }
-
         catch (err) {
 
             currentBuild.result = "FAILURE"
@@ -87,5 +81,10 @@ node('linux') {
                 echo "FAILURE"
             throw err
         }
+    }
+    post {
+            always {
+                    archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
+            }
     }
 }
