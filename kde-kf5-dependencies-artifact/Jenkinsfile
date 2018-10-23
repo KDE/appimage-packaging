@@ -74,11 +74,10 @@ node('linux') {
                 step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kde-kf5-dependencies-artifact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
 
-            stage "Archive build output" {
-
-              // Archive the build output artifacts.
-              archiveArtifacts artifacts: 'artifacts/*.gz'
-         }
+             post {
+                 always {
+                     archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
+        }
     }
 
         catch (err) {
