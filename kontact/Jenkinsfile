@@ -37,7 +37,7 @@ node('linux') {
             extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kontact']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/kontact']]]
             step ([$class: 'CopyArtifact',
                       projectName: 'kde-kf5-dependencies-artifact',
-                      filter: 'kde-kf5-dependencies-artifact/artifacts/kf5.tgz']);
+                      filter: 'kde-kf5-dependencies-artifact/artifacts/kf5.tar.gz']);
        }
         stage( 'Setup' ) {
             sh 'bundle install'
