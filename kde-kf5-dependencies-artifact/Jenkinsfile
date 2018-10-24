@@ -26,6 +26,11 @@ pipeline {
         WORKSPACE=pwd()
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     }
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+    }
+    triggers { pollSCM('H */4 * * 1-5') }
     stages {
             stage( 'Checkout' ) {
                 steps {
@@ -82,7 +87,7 @@ pipeline {
     }
             post {
                     always {
-                                archiveArtifacts artifacts: 'artifacts/*.gz', fingerprint: true
+                                archiveArtifacts artifacts: 'kde-kf5-dependencies-artifact/artifacts/*.gz', fingerprint: true
                     }
             }
 }
