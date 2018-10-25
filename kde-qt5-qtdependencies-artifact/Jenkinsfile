@@ -63,8 +63,6 @@ pipeline {
                         fi
                         cd kde-qt5-qtdependencies-artifact
                         eval "$(rbenv init -)"
-                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        bundle install
                         fi
 
                         '''

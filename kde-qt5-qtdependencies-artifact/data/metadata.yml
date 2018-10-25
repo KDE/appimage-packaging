@@ -6,24 +6,24 @@ frameworks:
   frameworks:
 dependencies:
   - qt5:
-      build:
-        buildsystem: custom
-        buildoptions: 'perl init-repository --module-subset=default,-qtmacextras,-qtwinextras,-qtwebkit-examples,-qtandroidextras &&
+    build:
+      buildsystem: custom
+      buildoptions: 'perl init-repository --module-subset=default,-qtmacextras,-qtwinextras,-qtwebkit-examples,-qtandroidextras &&
         ./configure -v -release -opensource -nomake examples -nomake tests -confirm-license -opengl desktop -reduce-exports -prefix /opt/usr && make -j8 && make install'
-      depname: qt5
-      source:
-        type: git
-       url: ' git://code.qt.io/qt/qt5.git'
-        branch: '5.11'
+    depname: qt5
+    source:
+     type: git
+     url: ' git://code.qt.io/qt/qt5.git'
+     branch: '5.11'
   - qt5webkit:
       build:
         buildsystem: custom
         buildoptions: /bin/bash /in/scripts/qt5webkit.sh
       depname: qt5
       source:
-        type: none
+       type: none
        url: ''
-        branch: ''
+       branch: ''
   - libgpg-error:
       build:
         buildsystem: autoreconf
