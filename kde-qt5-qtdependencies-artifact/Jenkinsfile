@@ -72,7 +72,7 @@ pipeline {
             }
             stage( 'Build' ) {
                 steps {
-                    sh "cd $JOB_NAME" && bundle install
+                    sh "cd $JOB_NAME && bundle install"
                     sh '''#!/usr/bin/env bash
                         set -e
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
