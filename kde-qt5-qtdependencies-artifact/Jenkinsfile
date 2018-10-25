@@ -76,10 +76,12 @@ pipeline {
                     sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
+                        ls -l
+                        pwd
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
-                        chmod +x setup.sh
-                        cd kde-qt5-qtdependencies-artifact && ls -l && pwd && bundle install && bundle exec deploy.rb
+                        cd kde-qt5-qtdependencies-artifact && chmod +x setup.sh
+                        bundle install && bundle exec ruby deploy.rb
                         '''
                     }
             }
