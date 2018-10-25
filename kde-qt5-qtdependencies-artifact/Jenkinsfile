@@ -63,7 +63,6 @@ pipeline {
                         fi
                         cd kde-qt5-qtdependencies-artifact
                         eval "$(rbenv init -)"
-                        echo '2.4.1' >> ~/.rbenv/version
                         rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
                         bundle install
                         fi
@@ -73,12 +72,13 @@ pipeline {
             }
             stage( 'Build' ) {
                 steps {
+                    sh "cd $JOB_NAME"
                     sh '''#!/usr/bin/env bash
                         set -e
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
-                        cd kde-qt5-qtdependencies-artifact && pwd && ls -l  && bundle exec deploy.rb
+                        bundle exec deploy.rb
                         '''
                     }
             }
