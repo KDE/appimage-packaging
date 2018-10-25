@@ -20,5 +20,8 @@
 export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PATH
 export WORKSPACE=`pwd`
 echo $WORKSPACE
+cd /in
+eval "$(rbenv init -)"
+rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
 bundle install
-cd /in && rspec appimage-template/spec/artifact_recipe_rspec.rb --fail-fast
+rspec appimage-template/spec/artifact_recipe_rspec.rb --fail-fast
