@@ -8,7 +8,7 @@ dependencies:
   - qt5:
       build:
         buildsystem: custom
-        buildoptions: 'perl init-repository --module-subset=default
+        buildoptions: 'perl init-repository --module-subset=default && \
         ./configure -v -release -opensource -nomake examples -nomake tests -confirm-license -opengl desktop -reduce-exports -prefix /opt/usr && make -j8 && make install'
       depname: qt5
       source:
