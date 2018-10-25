@@ -26,6 +26,7 @@ pipeline {
         WORKSPACE=pwd()
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
         JOB_NAME="kde-qt5-qtdependencies-artifact"
+        RBENV_VERSION="2.4.1"
     }
     options {
         disableConcurrentBuilds()
@@ -61,6 +62,7 @@ pipeline {
                             rbenv install 2.4.1
                         fi
                         eval "$(rbenv init -)"
+                        echo '2.4.1' >> ~/.rbenv/version
                         rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
                         cd $JOB_NAME && bundle install
                         fi
