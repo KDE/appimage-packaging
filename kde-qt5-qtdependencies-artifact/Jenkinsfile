@@ -62,7 +62,7 @@ pipeline {
                         fi
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        cd kde-kf5-dependencies-artifact && bundle install
+                        cd $JOBNAME && bundle install
                         fi
 
                         '''
@@ -72,7 +72,7 @@ pipeline {
                 steps {
                     sh '''#!/usr/bin/env bash
                         set -e
-                        cd kde-kf5-dependencies-artifact
+                        cd $JOB_NAME
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
