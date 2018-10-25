@@ -25,6 +25,7 @@ pipeline {
     environment {
         WORKSPACE=pwd()
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+        JOB_NAME="kontact-appmage"
     }
     options {
         disableConcurrentBuilds()
@@ -37,7 +38,7 @@ pipeline {
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kontact/appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
                     copyArtifacts projectName: "kde-kf5-dependencies-artifact", selector: lastCompleted()
                 }
             }
@@ -62,7 +63,7 @@ pipeline {
                         fi
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        cd kde-kf5-dependencies-artifact && bundle install
+                        cd $JOB_NAME && bundle install
                         fi
 
                         '''
@@ -72,7 +73,7 @@ pipeline {
                 steps {
                     sh '''#!/usr/bin/env bash
                         set -e
-                        cd kde-kf5-dependencies-artifact
+                        cd $JOB_NAME
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
@@ -82,7 +83,7 @@ pipeline {
             }
             stage('Tests') {
                 steps {
-                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kontact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
         }
     }
