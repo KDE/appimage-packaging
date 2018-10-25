@@ -63,7 +63,7 @@ pipeline {
                         fi
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        bundle install
+                        cd $JOB_NAME && bundle install
                         fi
 
                         '''
