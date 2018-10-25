@@ -45,7 +45,8 @@ pipeline {
             stage( 'Setup' ) {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
-                    sh '''#!/usr/bin/env bash
+                    sh cd $JOB_NAME && \
+                    '''#!/usr/bin/env bash
                         set -e
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         if [[ ! -d ~/.rbenv ]] ; then
@@ -63,7 +64,7 @@ pipeline {
                         fi
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        cd $JOB_NAME && bundle install
+                        bundle install
                         fi
 
                         '''
@@ -71,7 +72,8 @@ pipeline {
             }
             stage( 'Build' ) {
                 steps {
-                    sh '''#!/usr/bin/env bash
+                    sh cd $JOB_NAME && \
+                    '''#!/usr/bin/env bash
                         set -e
                         cd $JOB_NAME
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
