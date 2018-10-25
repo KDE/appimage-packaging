@@ -78,7 +78,7 @@ pipeline {
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
-                        cd kde-qt5-qtdependencies-artifact && ls -l && pwd && bundle install && ruby deploy.rb
+                        cd kde-qt5-qtdependencies-artifact && ls -l && pwd && bundle install && bundle exec deploy.rb
                         '''
                     }
             }
