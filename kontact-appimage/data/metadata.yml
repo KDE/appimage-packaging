@@ -36,6 +36,7 @@ frameworks:
     - libgravatar
     - kidentitymanagement
     - ksmtp
+    - libkgapi
     - kmailtransport
     - kmbox
     - messagelib
@@ -49,7 +50,6 @@ frameworks:
     - kholidays
     - kalarmcal
     - akonadi-calendar
-    - libkgapi
     - kdiagram
     - calendarsupport
     - eventviews
