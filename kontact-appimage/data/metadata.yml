@@ -35,6 +35,7 @@ frameworks:
     - kdepim-apps-libs
     - libgravatar
     - kidentitymanagement
+    - ksmtp
     - kmailtransport
     - kmbox
     - messagelib
