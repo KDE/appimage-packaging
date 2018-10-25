@@ -38,7 +38,7 @@ pipeline {
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
                 }
             }
             stage( 'Setup' ) {
@@ -82,13 +82,13 @@ pipeline {
             }
             stage('Tests') {
                 steps {
-                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath:relativeTargetDir: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
         }
     }
             post {
                     always {
-                                archiveArtifacts artifacts: relativeTargetDir: "$JOB_NAME/artifacts/*.gz", fingerprint: true
+                                archiveArtifacts artifacts: "$JOB_NAME/artifacts/*.gz", fingerprint: true
                     }
             }
 }
