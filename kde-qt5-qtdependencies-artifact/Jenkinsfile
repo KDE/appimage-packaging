@@ -78,7 +78,7 @@ pipeline {
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
-                        bundle exec deploy.rb
+                        ls -l && pwd && ruby deploy.rb
                         '''
                     }
             }
