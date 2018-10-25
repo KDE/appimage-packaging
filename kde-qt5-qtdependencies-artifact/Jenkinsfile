@@ -70,10 +70,10 @@ pipeline {
             }
             stage( 'Build' ) {
                 steps {
-                    sh "cd $JOB_NAME && bundle install"
-                    sh '''#!/usr/bin/env bash
+                        sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
+                        echo $JOB_NAME
                         ls -l
                         pwd
                         eval "$(rbenv init -)"

@@ -22,6 +22,5 @@ export WORKSPACE=`pwd`
 echo $WORKSPACE
 cd /in
 eval "$(rbenv init -)"
-rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-bundle install
+rbenv local 2.4.1 bundle list
 rspec appimage-template/spec/artifact_recipe_rspec.rb --fail-fast
