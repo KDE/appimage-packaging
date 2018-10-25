@@ -20,7 +20,7 @@
 export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PATH
 export WORKSPACE=`pwd`
 echo $WORKSPACE
-ls -l
-tar -xvf kf5.tar.gz /opt
+ls -l /in/
+tar -xvf /in/kf5.tar.gz /opt
 ls -l /opt/
 cd /in && rspec appimage-template/spec/recipe_rspec.rb --fail-fast
