@@ -40,6 +40,7 @@ pipeline {
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
                     copyArtifacts projectName: "kde-kf5-dependencies-artifact", selector: lastCompleted()
+                    sh "pwd && ls -l"
                 }
             }
             stage( 'Setup' ) {
