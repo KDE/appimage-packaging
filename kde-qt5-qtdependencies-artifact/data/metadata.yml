@@ -1,0 +1,131 @@
+name: qt5deps
+binary: qt5deps
+packages:
+frameworks:
+  build_kf5: false
+  frameworks:
+dependencies:
+  - qt5:
+      build:
+        buildsystem: custom
+        buildoptions: 'perl init-repository --module-subset=default,-qtmacextras,-qtwinextras,-qtwebkit-examples,-qtandroidextras &&
+        ./configure -v -release -opensource -nomake examples -nomake tests -confirm-license -opengl desktop -reduce-exports -prefix /opt/usr && make -j8 && make install'
+      depname: qt5
+      source:
+        type: git
+       url: ' git://code.qt.io/qt/qt5.git'
+        branch: '5.11'
+  - qt5webkit:
+      build:
+        buildsystem: custom
+        buildoptions: /bin/bash /in/scripts/qt5webkit.sh
+      depname: qt5
+      source:
+        type: none
+       url: ''
+        branch: ''
+  - libgpg-error:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: libgpg-error-1.26
+      source:
+        type: bz2
+        url: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.26.tar.bz2
+  - libksba:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: libksba-1.3.5
+      source:
+        type: bz2
+        url: https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2
+  - libassuan:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: libassuan-2.4.3
+      source:
+        type: bz2
+        url: https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
+  - npth:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: npth-1.3
+      source:
+        type: bz2
+        url: https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2
+  - libgcrypt:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: libgcrypt-1.7.10
+      source:
+        type: gz
+        url: https://github.com/gpg/libgcrypt/archive/libgcrypt-1.7.10.tar.gz
+  - libtasn1:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: libtasn1-4.10
+      source:
+        type: gz
+        url: http://ftp.gnu.org/gnu/libtasn1/libtasn1-4.10.tar.gz
+  - nettle:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: nettle-3.3
+      source:
+        type: gz
+        url: https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
+  - p11-kit:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: p11-kit-0.23.14
+      source:
+        type: gz
+        url: https://github.com/p11-glue/p11-kit/releases/download/0.23.14/p11-kit-0.23.14.tar.gz
+  - gnutls:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: gnutls-3.5.10
+      source:
+        type: gz
+        url: ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
+  - pcre:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: pcre-8.35
+      source:
+        type: bz2
+        url: http://downloads.sourceforge.net/pcre/pcre-8.35.tar.bz2
+  - gnupg:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: gnupg-2.1.17
+      source:
+        type: bz2
+        url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.17.tar.bz2
+  - gnupg:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: gnupg-2.1.17
+      source:
+        type: bz2
+        url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.17.tar.bz2
+  - gpgme:
+      build:
+        buildsystem: autoreconf
+        buildoptions: '--prefix=/opt/usr'
+      depname: gpgme
+      source:
+        type: git
+        url: 'git://git.gnupg.org/gpgme.git'
+        branch: 'master'
