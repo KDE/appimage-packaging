@@ -72,11 +72,10 @@ pipeline {
                 steps {
                     sh '''#!/usr/bin/env bash
                         set -e
-                        cd $JOB_NAME
                         export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
                         eval "$(rbenv init -)"
                         rbenv local 2.4.1
-                        bundle exec deploy.rb
+                        cd $JOB_NAME && bundle exec deploy.rb
                         '''
                     }
             }
