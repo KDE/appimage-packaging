@@ -20,47 +20,70 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-node('linux') {
-
-
-    currentBuild.result = "SUCCESS"
-    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')), disableConcurrentBuilds()])
-
-    try {
-
-        stage( 'Checkout' ) {
-            checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
-            checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
-            checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-            extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kontact']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/kontact']]]
-            step ([$class: 'CopyArtifact',
-                      projectName: 'kde-kf5-dependencies-artifact',
-                      filter: 'kf5.tar.gz']);
-       }
-        stage( 'Setup' ) {
-            sh 'bundle install'
-            def WORKSPACE=pwd()
-        }
-        stage( 'Build' ) {
-            sh 'bundle exec deploy.rb'
-       }
-       stage('Tests') {
-            step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
-      }
-
-   }
-
-
-
-
-    catch (err) {
-
-        currentBuild.result = "FAILURE"
-
-            echo "FAILURE"
-        throw err
+pipeline {
+    agent { node { label 'linux' } }
+    environment {
+        WORKSPACE=pwd()
+        PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     }
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+    }
+    triggers { pollSCM('H */4 * * 1-5') }
+    stages {
+            stage( 'Checkout' ) {
+                steps {
+                    checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
+                    checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kontact/appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    copyArtifacts projectName: "kde-kf5-dependencies-artifact", selector: lastCompleted()
+                }
+            }
+            stage( 'Setup' ) {
+                steps {
+                    sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
+                        if [[ ! -d ~/.rbenv ]] ; then
+                        git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                        git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
+                            rbenv install 2.4.1
+                        fi
+                        eval "$(rbenv init -)"
+                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                        else
+                        echo "Rbenv exists, moving on"
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
+                            rbenv install 2.4.1
+                        fi
+                        eval "$(rbenv init -)"
+                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                        cd kde-kf5-dependencies-artifact && bundle install
+                        fi
 
+                        '''
+                    }
+            }
+            stage( 'Build' ) {
+                steps {
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        cd kde-kf5-dependencies-artifact
+                        export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
+                        eval "$(rbenv init -)"
+                        rbenv local 2.4.1
+                        bundle exec deploy.rb
+                        '''
+                    }
+            }
+            stage('Tests') {
+                steps {
+                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kontact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+            }
+        }
+    }
 }
