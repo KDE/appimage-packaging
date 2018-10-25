@@ -63,12 +63,21 @@ dependencies:
   - grantlee5:
       build:
         buildsystem: cmake
-        buildoptions: '-DCMAKE_INSTALL_PREFIX:PATH=/opt/usr CMAKE_BUILD_TYPE=Release'
+        buildoptions: '-DCMAKE_INSTALL_PREFIX:PATH=/opt/usr CMAKE_BUILD_TYPE=RELWITHDEBINFO'
       depname: grantlee
       source:
         type: git
         url: 'https://github.com/steveire/grantlee'
         branch: 'v5.1.0'
+  - libical:
+      build:
+        buildsystem: cmake
+        buildoptions: '-DCMAKE_INSTALL_PREFIX:PATH=/opt/usr CMAKE_BUILD_TYPE=RELWITHDEBINFO'
+      depname: libical
+      source:
+        type: git
+        url: 'https://github.com/libical/libical.git'
+        branch: 'v2.0.0'
 kf5_deps:
   - kdepim-runtime:
       build:
