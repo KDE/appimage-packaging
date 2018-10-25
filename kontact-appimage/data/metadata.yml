@@ -60,14 +60,6 @@ url: http://anongit.kde.org/kontact
 buildsystem: cmake
 buildoptions: "-DCMAKE_INSTALL_PREFIX=/opt/usr -DKDE_INSTALL_SYSCONFDIR=/opt/etc -DBUILD_TESTING=OFF"
 dependencies:
-  - cpan:
-      build:
-        buildsystem: custom
-        buildoptions: cpan URI::Escape
-      depname: cpan
-      source:
-        type: none
-        url: ''
   - grantlee5:
       build:
         buildsystem: cmake
