@@ -30,7 +30,7 @@ if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
 end
 setup_path = `pwd`
 p setup_path
-project = ENV["JOB_NAME"]
+project = kde-qt5-qtdependencies-artifact
 builder = CI.new
 unless Dir.exist?('app')
   Dir.mkdir('app')
