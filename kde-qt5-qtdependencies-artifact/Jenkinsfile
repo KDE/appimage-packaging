@@ -60,14 +60,10 @@ pipeline {
                             rbenv init -
                             rbenv install 2.5.0
                             rbenv rehash
-                            gem install bundler
-                            rbenv rehash
                         else
                             echo "Rbenv exists, moving on"
                             if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
                                 rbenv install 2.5.0
-                                rbenv rehash
-                                gem install bundler
                                 rbenv rehash
                             fi
                          fi
@@ -80,7 +76,7 @@ pipeline {
                         fi
                         which ruby
                         ruby -v
-                        gem install bundler && rbenv rehash
+                        gem install --no-ri --no-rdoc bundler && rbenv rehash
                         '''
                     }
             }
@@ -92,7 +88,7 @@ pipeline {
                         set -e
                         echo $PATH
                         cd $JOB_NAME && chmod +x setup.sh
-                        bundle --path=~/vendor/bundle --binstubs && bundle show rspec
+                        bundle bundle show rspec
                         rbenv rehash
                         bundle list --paths
                         bundle env
