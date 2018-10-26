@@ -93,7 +93,7 @@ pipeline {
                         rbenv rehash
                         bundle list --paths
                         bundle env
-                        ruby deploy.rb
+                        bundle exec ruby deploy.rb
                         '''
                     }
             }
