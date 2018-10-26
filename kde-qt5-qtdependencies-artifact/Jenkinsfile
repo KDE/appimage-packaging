@@ -63,13 +63,14 @@ pipeline {
                             eval "$(rbenv init -)"
                         else
                         echo "Rbenv exists, moving on"
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
-                            rbenv install -v 2.5.0
-                        else
-                            rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
-                            cd $JOB_NAME && bundle install --binstubs && bundle show rspec
-                            rbenv rehash
-                            eval "$(rbenv init -)"
+                            if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                                rbenv install -v 2.5.0
+                            else
+                                rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
+                                cd $JOB_NAME && bundle install --binstubs && bundle show rspec
+                                rbenv rehash
+                                eval "$(rbenv init -)"
+                            fi
                         fi
 
                         '''
