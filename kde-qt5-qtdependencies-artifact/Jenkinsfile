@@ -94,7 +94,7 @@ pipeline {
                         set -e
                         echo $PATH
                         cd $JOB_NAME && chmod +x setup.sh
-                        ruby deploy.rb
+                        bundle exec deploy.rb
                         '''
                     }
             }
