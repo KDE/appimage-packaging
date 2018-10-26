@@ -79,7 +79,7 @@ pipeline {
                         which ruby
                         ruby -v
                         gem install bundler && rbenv rehash
-                        cd $JOB_NAME && bundle --binstubs && bundle show rspec
+                        cd $JOB_NAME && bundle --path=~/vendor/bundle --binstubs && bundle show rspec
                         rbenv rehash
                         eval "$(rbenv init -)"
                         bundle list --paths
