@@ -95,7 +95,8 @@ pipeline {
                         bundle --path=~/vendor/bundle --binstubs && bundle show rspec
                         rbenv rehash
                         bundle list --paths
-                        bundle exec deploy.rb
+                        bundle env
+                        ruby deploy.rb
                         '''
                     }
             }
