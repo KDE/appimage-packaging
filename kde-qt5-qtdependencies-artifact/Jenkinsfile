@@ -62,13 +62,13 @@ pipeline {
                             rbenv rehash
                             eval "$(rbenv init -)"
                         else
-                        echo "Rbenv exists, moving on"
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
-                            rbenv install -v 2.5.0
-                        fi
-                        if [[ -d /var/lib/jenkins/.gem]]; then
-                            rm -rfv /var/lib/jenkins/.gem
-                        fi
+                            echo "Rbenv exists, moving on"
+                            if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                                rbenv install -v 2.5.0
+                            fi
+                            if [[ -d /var/lib/jenkins/.gem]] ; then
+                                rm -rfv /var/lib/jenkins/.gem
+                            fi
                         fi
                         '''
                     sh '''#!/usr/bin/env bash
