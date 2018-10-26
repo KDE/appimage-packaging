@@ -16,13 +16,13 @@ dependencies:
         branch: '5.11'
   - qt5webkit:
       build:
-        buildsystem: custom
-        buildoptions: /bin/bash /in/scripts/qt5webkit.sh
-      depname: qt5
+        buildsystem: cmake
+        buildoptions: '-DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr -DPORT=Qt'
+      depname: qtwebkit
       source:
-       type: none
-       url: ''
-       branch: ''
+       type: git
+       url: 'http://code.qt.io/qt/qtwebkit.git'
+       branch: '5.212'
   - libgpg-error:
       build:
         buildsystem: autoreconf
