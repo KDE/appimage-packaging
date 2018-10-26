@@ -81,7 +81,6 @@ pipeline {
             }
             stage( 'Build' ) {
                 steps {
-                        sh
                         sh 'rbenv init -'
                         sh 'which ruby && ruby -v'
                         sh '''#!/usr/bin/env bash
