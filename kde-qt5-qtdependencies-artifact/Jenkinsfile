@@ -55,14 +55,15 @@ pipeline {
                         if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
                             rbenv install 2.5.0
                         fi
-                        eval "$(rbenv init -)"
-                        cd kde-qt5-qtdependencies-artifact && bundle install --binstubs && bundle show rspec
+                        rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
+                        echo 'eval "$(rbenv init -)"' >> ~/.bashrc && rbenv init -
                         else
                         echo "Rbenv exists, moving on"
                         if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
-                            rbenv install 2.5.0
+                            rbenv install -v 2.5.0
+                            echo 'eval "$(rbenv init -)"' >> ~/.bashrc && rbenv init -
                         fi
-                        eval "$(rbenv init -)"
+                        rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
                         cd kde-qt5-qtdependencies-artifact && bundle install --binstubs && bundle show rspec
                         rbenv rehash
                         fi
@@ -76,7 +77,6 @@ pipeline {
                         set -e
                         echo $PATH
                         echo $JOB_NAME
-                        eval "$(rbenv init -)"
                         cd kde-qt5-qtdependencies-artifact && chmod +x setup.sh
                         ruby deploy.rb
                         '''
