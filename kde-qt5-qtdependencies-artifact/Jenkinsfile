@@ -88,7 +88,8 @@ pipeline {
                         set -e
                         echo $PATH
                         cd $JOB_NAME && chmod +x setup.sh
-                        bundle bundle show rspec
+                        bundle
+                        bundle show rspec
                         rbenv rehash
                         bundle list --paths
                         bundle env
