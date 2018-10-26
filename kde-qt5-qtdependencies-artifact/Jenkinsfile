@@ -63,21 +63,25 @@ pipeline {
                             eval "$(rbenv init -)"
                         else
                         echo "Rbenv exists, moving on"
-                            if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
-                                rbenv install -v 2.5.0
-                            else
-                                rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
-                                cd $JOB_NAME && bundle install --binstubs && bundle show rspec
-                                rbenv rehash
-                                eval "$(rbenv init -)"
-                            fi
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                            rbenv install -v 2.5.0
                         fi
-
+                        fi
+                        '''
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
+                        cd $JOB_NAME && bundle install --binstubs && bundle show rspec
+                        rbenv rehash
+                        eval "$(rbenv init -)"
+                        which ruby
+                        ruby -v
                         '''
                     }
             }
             stage( 'Build' ) {
                 steps {
+                        sh
                         sh 'rbenv init -'
                         sh 'which ruby && ruby -v'
                         sh '''#!/usr/bin/env bash
