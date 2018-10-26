@@ -66,12 +66,15 @@ pipeline {
                         if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
                             rbenv install -v 2.5.0
                         fi
+                        if [[ -d /var/lib/jenkins/.gem]]; then
+                            rm -rfv /var/lib/jenkins/.gem
+                        fi
                         fi
                         '''
                     sh '''#!/usr/bin/env bash
                         set -e
                         rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
-                        cd $JOB_NAME && bundle install --binstubs && bundle show rspec
+                        cd $JOB_NAME && bundle --path=vendor/bundle --binstubs && bundle show rspec
                         rbenv rehash
                         eval "$(rbenv init -)"
                         which ruby
