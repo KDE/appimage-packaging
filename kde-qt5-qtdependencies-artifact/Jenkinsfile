@@ -27,8 +27,6 @@ pipeline {
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
         JOB_NAME="kde-qt5-qtdependencies-artifact"
         RBENV_VERSION="2.5.0"
-        BUNDLE_PATH= "~/vendor/bundle"
-        BUNDLE_DISABLE_SHARED_GEMS= "1"
     }
     options {
         disableConcurrentBuilds()
@@ -48,6 +46,10 @@ pipeline {
             stage( 'Setup' ) {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
+                    sh '''
+                    echo "BUNDLE_PATH: ~/vendor/bundle" >> /var/lib/jenkins/.bundle/config
+                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> /var/lib/jenkins/.bundle/config
+                    '''
                     sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
@@ -94,7 +96,7 @@ pipeline {
                         set -e
                         echo $PATH
                         cd $JOB_NAME && chmod +x setup.sh
-                        bundle exec deploy.rb
+                        ruby deploy.rb
                         '''
                     }
             }
