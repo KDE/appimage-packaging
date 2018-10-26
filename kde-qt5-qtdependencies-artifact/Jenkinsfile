@@ -31,6 +31,7 @@ pipeline {
     options {
         disableConcurrentBuilds()
         timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
     }
     triggers { pollSCM('H */4 * * 1-5') }
     stages {
@@ -51,18 +52,19 @@ pipeline {
                         if [[ ! -d ~/.rbenv ]] ; then
                         git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
                         git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
-                            rbenv install 2.4.1
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                            rbenv install 2.5.0
                         fi
                         eval "$(rbenv init -)"
-                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                        cd kde-qt5-qtdependencies-artifact && bundle install --binstubs && bundle show rspec
                         else
                         echo "Rbenv exists, moving on"
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
-                            rbenv install 2.4.1
+                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                            rbenv install 2.5.0
                         fi
-                        cd kde-qt5-qtdependencies-artifact
                         eval "$(rbenv init -)"
+                        cd kde-qt5-qtdependencies-artifact && bundle install --binstubs && bundle show rspec
+                        rbenv rehash
                         fi
 
                         '''
@@ -74,12 +76,9 @@ pipeline {
                         set -e
                         echo $PATH
                         echo $JOB_NAME
-                        ls -l
-                        pwd
                         eval "$(rbenv init -)"
-                        rbenv local 2.4.1
                         cd kde-qt5-qtdependencies-artifact && chmod +x setup.sh
-                        bundle install && bundle exec ruby deploy.rb
+                        ruby deploy.rb
                         '''
                     }
             }
