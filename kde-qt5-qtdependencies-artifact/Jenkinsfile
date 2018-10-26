@@ -46,7 +46,7 @@ pipeline {
             stage( 'Setup' ) {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
-                    sh 'echo eval "$(rbenv init -)"' >> /var/lib/jenkins/.bashrc'
+                    sh 'echo eval "$(rbenv init -)" >> /var/lib/jenkins/.bashrc'
                     sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
