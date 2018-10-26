@@ -81,8 +81,7 @@ pipeline {
                         sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
-                        echo $JOB_NAME
-
+                        eval "$(rbenv init -)"
                         cd $JOB_NAME && chmod +x setup.sh
                         ruby deploy.rb
                         '''
