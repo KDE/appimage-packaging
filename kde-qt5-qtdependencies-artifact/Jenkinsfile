@@ -78,10 +78,11 @@ pipeline {
             }
             stage( 'Build' ) {
                 steps {
+                        sh 'rbenv init -'
+                        sh 'which ruby && ruby -v'
                         sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
-                        eval "$(rbenv init -)"
                         cd $JOB_NAME && chmod +x setup.sh
                         ruby deploy.rb
                         '''
