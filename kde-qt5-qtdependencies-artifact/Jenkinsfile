@@ -49,36 +49,37 @@ pipeline {
                     sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
-                        echo 'eval "$(rbenv init -)"' >> /var/lib/jenkins/.bashrc && rbenv init -
                         if [[ ! -d ~/.rbenv ]] ; then
-                        git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-                        git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-                        fi
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                            git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                            git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                            rbenv init -
                             rbenv install 2.5.0
-                            rbenv global 2.5.0
                             rbenv rehash
                             gem install bundler
                             rbenv rehash
-                            eval "$(rbenv init -)"
                         else
                             echo "Rbenv exists, moving on"
                             if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
-                                rbenv install -v 2.5.0
+                                rbenv install 2.5.0
+                                rbenv rehash
+                                gem install bundler
+                                rbenv rehash
                             fi
-                            if [[ -d /var/lib/jenkins/.gem]] ; then
-                                rm -rfv /var/lib/jenkins/.gem
-                            fi
-                        fi
+                         fi
+                        echo 'eval "$(rbenv init -)"' >> /var/lib/jenkins/.bashrc && rbenv init -
                         '''
                     sh '''#!/usr/bin/env bash
                         set -e
-                        rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
+                        if [[ ! -d /var/lib/jenkins/.gem ]] ; then
+                            rm -rfv /var/lib/jenkins/.gem
+                        fi
+                        which ruby
+                        ruby -v
+                        gem install bundler && rbenv rehash
                         cd $JOB_NAME && bundle --path=vendor/bundle --binstubs && bundle show rspec
                         rbenv rehash
                         eval "$(rbenv init -)"
-                        which ruby
-                        ruby -v
+                        bundle list --paths
                         '''
                     }
             }
