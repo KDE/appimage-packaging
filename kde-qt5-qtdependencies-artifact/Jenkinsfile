@@ -66,6 +66,7 @@ pipeline {
                         rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
                         cd kde-qt5-qtdependencies-artifact && bundle install --binstubs && bundle show rspec
                         rbenv rehash
+                        eval "$(rbenv init -)"
                         fi
 
                         '''
