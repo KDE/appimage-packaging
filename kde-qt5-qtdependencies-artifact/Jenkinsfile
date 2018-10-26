@@ -46,27 +46,30 @@ pipeline {
             stage( 'Setup' ) {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
+                    sh 'echo 'eval "$(rbenv init -)"' >> /var/lib/jenkins/.bashrc'
                     sh '''#!/usr/bin/env bash
                         set -e
                         echo $PATH
                         if [[ ! -d ~/.rbenv ]] ; then
                         git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
                         git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                        fi
                         if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
                             rbenv install 2.5.0
-                        fi
-                        rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
-                        echo 'eval "$(rbenv init -)"' >> ~/.bashrc && rbenv init -
+                            rbenv global 2.5.0
+                            rbenv rehash
+                            gem install bundler
+                            rbenv rehash
+                            eval "$(rbenv init -)
                         else
                         echo "Rbenv exists, moving on"
                         if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
                             rbenv install -v 2.5.0
-                            echo 'eval "$(rbenv init -)"' >> ~/.bashrc && rbenv init -
-                        fi
-                        rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
-                        cd kde-qt5-qtdependencies-artifact && bundle install --binstubs && bundle show rspec
-                        rbenv rehash
-                        eval "$(rbenv init -)"
+                        else
+                            rbenv global 2.5.0 && rbenv rehash && gem install bundler && rbenv rehash
+                            cd $JOB_NAME && bundle install --binstubs && bundle show rspec
+                            rbenv rehash
+                            eval "$(rbenv init -)"
                         fi
 
                         '''
@@ -78,7 +81,8 @@ pipeline {
                         set -e
                         echo $PATH
                         echo $JOB_NAME
-                        cd kde-qt5-qtdependencies-artifact && chmod +x setup.sh
+
+                        cd $JOB_NAME && chmod +x setup.sh
                         ruby deploy.rb
                         '''
                     }
