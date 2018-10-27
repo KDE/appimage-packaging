@@ -28,6 +28,9 @@ if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
+unless Dir.exist?('artifacts')
+  Dir.mkdir('artifacts')
+end
 project = ENV["JOB_NAME"]
 builder = CI.new
 builder.run = [CI::Build.new(project)]
