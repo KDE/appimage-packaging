@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env ruby
+# frozen_string_literal: true
 #
 # Copyright (C) 2016 Scarlett Clark <sgclark@kde.org>
+# Copyright (C) 2015-2016 Harald Sitter <sitter@kde.org>
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -17,8 +19,17 @@
 #
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library.  If not, see <http://www.gnu.org/licenses/>.
-export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PATH
-export WORKSPACE=`pwd`
-echo $WORKSPACE
-bundle install
-cd /in && rspec appimage-template/spec/artifact_recipe_rspec.rb --fail-fast
+
+require_relative 'appimage-template/libs/builddocker.rb'
+require 'fileutils'
+require 'pty'
+
+if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
+project = ENV["JOB_NAME"]
+builder = CI.new
+builder.run = [CI::Build.new(project)]
+builder.cmd = %w[bash -c /in/setup.sh]
+builder.create_container(project)

@@ -25,10 +25,13 @@ pipeline {
     environment {
         WORKSPACE=pwd()
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+        JOB_NAME="kde-kf5-artifact"
+        RBENV_VERSION="2.5.0"
     }
     options {
         disableConcurrentBuilds()
         timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
     }
     triggers { pollSCM('H */4 * * 1-5') }
     stages {
@@ -37,57 +40,72 @@ pipeline {
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'kde-kf5-dependencies-artifact/appimage-template']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
                 }
             }
             stage( 'Setup' ) {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
+                    sh '''
+                    echo "BUNDLE_PATH: ~/vendor/bundle" >> /var/lib/jenkins/.bundle/config
+                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> /var/lib/jenkins/.bundle/config
+                    '''
                     sh '''#!/usr/bin/env bash
                         set -e
-                        export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
+                        echo $PATH
                         if [[ ! -d ~/.rbenv ]] ; then
-                        git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-                        git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
-                            rbenv install 2.4.1
-                        fi
-                        eval "$(rbenv init -)"
-                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                            git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                            git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                            git clone git://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
+                            rbenv init -
+                            rbenv install 2.5.0
+                            rbenv rehash
                         else
-                        echo "Rbenv exists, moving on"
-                        if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.4.1 ]] ; then
-                            rbenv install 2.4.1
+                            echo "Rbenv exists, moving on"
+                            if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                                rbenv install 2.5.0
+                                rbenv rehash
+                            fi
+                         fi
+                        echo 'eval "$(rbenv init -)"' >> /var/lib/jenkins/.bashrc && rbenv init -
+                        '''
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        if [[ ! -d /var/lib/jenkins/.gem ]] ; then
+                            rm -rfv /var/lib/jenkins/.gem
                         fi
-                        eval "$(rbenv init -)"
-                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        cd kde-kf5-dependencies-artifact && bundle install
-                        fi
-
+                        which ruby
+                        ruby -v
+                        gem install --no-ri --no-rdoc bundler && rbenv rehash
                         '''
                     }
             }
             stage( 'Build' ) {
                 steps {
-                    sh '''#!/usr/bin/env bash
+                        sh 'rbenv init -'
+                        sh 'which ruby && ruby -v'
+                        sh '''#!/usr/bin/env bash
                         set -e
-                        cd kde-kf5-dependencies-artifact
-                        export PATH=$PATH:/var/lib/jenkins/.rbenv/bin
-                        eval "$(rbenv init -)"
-                        rbenv local 2.4.1
-                        bundle exec deploy.rb
+                        echo $PATH
+                        cd $JOB_NAME && chmod +x setup.sh
+                        bundle
+                        bundle show rspec
+                        rbenv rehash
+                        bundle list --paths
+                        bundle env
+                        bundle exec ruby deploy.rb
                         '''
                     }
             }
             stage('Tests') {
                 steps {
-                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: 'kde-kf5-dependencies-artifact/appimage-template/parser.rules', showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
         }
     }
             post {
                     always {
-                                archiveArtifacts artifacts: 'kde-kf5-dependencies-artifact/artifacts/*.gz', fingerprint: true
+                                archiveArtifacts artifacts: "$JOB_NAME/artifacts/*.gz", fingerprint: true
                     }
             }
 }

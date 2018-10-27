@@ -28,29 +28,8 @@ if RUBY_VERSION =~ /1.9/ # assuming you're running Ruby ~1.9
   Encoding.default_external = Encoding::UTF_8
   Encoding.default_internal = Encoding::UTF_8
 end
-setup_path = `pwd`
-p setup_path
-project = 'kde-kf5-dependencies-artifact'
+project = ENV["JOB_NAME"]
 builder = CI.new
-unless Dir.exist?('app')
-  Dir.mkdir('app')
-end
-unless Dir.exist?('artifacts')
-  Dir.mkdir('artifacts')
-end
 builder.run = [CI::Build.new(project)]
 builder.cmd = %w[bash -c /in/setup.sh]
 builder.create_container(project)
-# begin
-#   PTY.spawn( cmd ) do |stdout, stdin, pid|
-#     begin
-#       # Do stuff with the output here. Just printing to show it works
-#       stdout.each { |line| print line }
-#     rescue Errno::EIO
-#       puts "Errno:EIO error, but this probably just means " +
-#             "that the process has finished giving output"
-#     end
-#   end
-# rescue PTY::ChildExited
-#   puts "The child process exited!"
-# end
