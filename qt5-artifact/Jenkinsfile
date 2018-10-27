@@ -105,7 +105,8 @@ pipeline {
     }
             post {
                     always {
-                                archiveArtifacts artifacts: "$JOB_NAME/artifacts/*.gz", fingerprint: true
+                                sh "mv $JOB_NAME/artifacts/artifact.tar.gz $JOB_NAME/artifacts/$JOB_NAME.tar.gz"
+                                archiveArtifacts artifacts: "$JOB_NAME/artifacts/$JOB_NAME.tar.gz", fingerprint: true
                     }
             }
 }
