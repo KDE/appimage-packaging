@@ -20,6 +20,11 @@
 export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PATH
 export WORKSPACE=`pwd`
 echo $WORKSPACE
+
+
+tar -xvf /in/artifact.tar.gz --strip-components=1 -C /opt
+ls -l /opt/
+
 cd /in
 rbenv init -
 bundle
