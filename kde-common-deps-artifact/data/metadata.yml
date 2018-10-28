@@ -46,7 +46,7 @@ dependencies:
         buildsystem: make
         autoreconf: true
         buildoptions: '--prefix=/opt/usr'
-      depname: libgcrypt-1.7.10
+      depname: libgcrypt
       source:
         type: gz
         url: https://github.com/gpg/libgcrypt/archive/libgcrypt-1.7.10.tar.gz
