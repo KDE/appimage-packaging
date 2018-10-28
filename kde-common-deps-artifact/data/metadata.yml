@@ -8,7 +8,7 @@ dependencies:
   - libgpg-error:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libgpg-error-1.26
       source:
@@ -17,7 +17,7 @@ dependencies:
   - libksba:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libksba-1.3.5
       source:
@@ -26,7 +26,7 @@ dependencies:
   - libassuan:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libassuan-2.4.3
       source:
@@ -35,7 +35,7 @@ dependencies:
   - npth:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: npth-1.3
       source:
@@ -44,7 +44,7 @@ dependencies:
   - libgcrypt:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libgcrypt-1.7.10
       source:
@@ -53,7 +53,7 @@ dependencies:
   - libtasn1:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libtasn1-4.10
       source:
@@ -62,7 +62,7 @@ dependencies:
   - nettle:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: nettle-3.3
       source:
@@ -71,7 +71,7 @@ dependencies:
   - p11-kit:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: p11-kit-0.23.14
       source:
@@ -80,7 +80,7 @@ dependencies:
   - gnutls:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: gnutls-3.5.10
       source:
@@ -89,7 +89,7 @@ dependencies:
   - pcre:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: pcre-8.35
       source:
@@ -98,7 +98,7 @@ dependencies:
   - gnupg:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: gnupg-2.1.17
       source:
@@ -107,7 +107,7 @@ dependencies:
   - gnupg:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: gnupg-2.1.17
       source:
@@ -116,7 +116,7 @@ dependencies:
   - gpgme:
       build:
         buildsystem: autogen
-          autoreconf: true
+        autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: gpgme
       source:
