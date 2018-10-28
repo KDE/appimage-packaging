@@ -52,7 +52,7 @@ dependencies:
         url: https://github.com/gpg/libgcrypt/archive/libgcrypt-1.7.10.tar.gz
   - libtasn1:
       build:
-        buildsystem: make
+        buildsystem: autogen
         autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libtasn1-4.10
@@ -84,7 +84,7 @@ dependencies:
         buildoptions: '--prefix=/opt/usr'
       depname: gnutls-3.5.10
       source:
-        type: gz
+        type: xz
         url: ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
   - pcre:
       build:
