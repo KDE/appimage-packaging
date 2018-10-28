@@ -31,7 +31,9 @@ pipeline {
         disableConcurrentBuilds()
         timestamps()
     }
-    triggers { pollSCM('H */4 * * 1-5') }
+    triggers { pollSCM('H */4 * * 1-5')
+                    upstream(upstreamProjects: 'qt5-artifact,kde-common-deps-artifact,kde-kf5-artifact', threshold: hudson.model.Result.SUCCESS)
+   }
     stages {
             stage( 'Checkout' ) {
                 steps {
@@ -39,7 +41,7 @@ pipeline {
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
-                    copyArtifacts projectName: "kde-kf5-dependencies-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
+                    copyArtifacts projectName: "kde-kf5-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
                     sh "pwd && ls -l"
                 }
             }

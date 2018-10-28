@@ -33,7 +33,7 @@ pipeline {
         timestamps()
         buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
     }
-    triggers { pollSCM('H */4 * * 1-5') }
+    triggers { upstream(upstreamProjects: 'qt5-artifact', threshold: hudson.model.Result.SUCCESS) }
     stages {
             stage( 'Checkout' ) {
                 steps {
@@ -41,6 +41,7 @@ pipeline {
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    copyArtifacts projectName: "qt5-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
                 }
             }
             stage( 'Setup' ) {
