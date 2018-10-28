@@ -43,7 +43,7 @@ dependencies:
         url: https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2
   - libgcrypt:
       build:
-        buildsystem: make
+        buildsystem: autogen
         autoreconf: true
         buildoptions: '--prefix=/opt/usr'
       depname: libgcrypt

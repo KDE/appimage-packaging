@@ -24,7 +24,7 @@ echo $WORKSPACE
 
 tar -xvf /in/artifact.tar.gz --strip-components=1 -C /opt
 ls -l /opt/
-
+rm /in/artifact.tar.gz
 cd /in
 rbenv init -
 bundle
