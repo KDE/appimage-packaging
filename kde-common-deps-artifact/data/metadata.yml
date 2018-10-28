@@ -43,8 +43,9 @@ dependencies:
         url: https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2
   - libgcrypt:
       build:
-        buildsystem: make
-        autoreconf: false
+        buildsystem: autogen
+        autoreconf: true
+        insource: true
         buildoptions: '--prefix=/opt/usr'
       depname: libgcrypt
       source:
@@ -52,8 +53,8 @@ dependencies:
         url: https://github.com/gpg/libgcrypt/archive/libgcrypt-1.7.10.tar.gz
   - libtasn1:
       build:
-        buildsystem: autogen
-        autoreconf: true
+        buildsystem: make
+        autoreconf: false
         buildoptions: '--prefix=/opt/usr'
       depname: libtasn1-4.10
       source:
