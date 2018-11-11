@@ -6,20 +6,16 @@ frameworks:
   frameworks:
 dependencies:
   - qt5:
-      build:
-        buildsystem: custom
-        buildoptions: 'perl init-repository --module-subset=default && ./configure -v -release -opensource -nomake examples -nomake tests -confirm-license -opengl desktop -reduce-exports -prefix /opt/usr && make -j8 && make install'
-      depname: qt5
-      source:
-        type: git
-        url: ' git://code.qt.io/qt/qt5.git'
-        branch: '5.11'
+    buildsystem: custom
+    buildoptions: 'perl init-repository --module-subset=default && ./configure -v -release -opensource -nomake examples -nomake tests -confirm-license -opengl desktop -reduce-exports -prefix /opt/usr && make -j8 && make install'
+    depname: qt5
+    scm: git
+    url: ' git://code.qt.io/qt/qt5.git'
+    branch: '5.11'
   - qt5webkit:
-      build:
-        buildsystem: cmake
-        buildoptions: '-DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr -DPORT=Qt'
-      depname: qtwebkit
-      source:
-       type: git
-       url: 'http://code.qt.io/qt/qtwebkit.git'
-       branch: '5.212'
+    buildsystem: cmake
+    buildoptions: '-DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr -DPORT=Qt'
+    depname: qtwebkit
+    scm: git
+    url: 'http://code.qt.io/qt/qtwebkit.git'
+    branch: '5.212'
