@@ -17,5 +17,5 @@ dependencies:
     buildoptions: '-DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr -DPORT=Qt'
     depname: qtwebkit
     scm: git
-    url: 'http://code.qt.io/qt/qtwebkit.git'
+    url: 'http://code.qt.io/qt/qtwebkit'
     branch: '5.212'
