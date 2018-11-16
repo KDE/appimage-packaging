@@ -88,30 +88,32 @@ dependencies:
         type: xz
         url: ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
   - pcre:
-      build:
-        buildsystem: make
-        autoreconf: true
-        buildoptions: '--prefix=/opt/usr'
-      depname: pcre-8.35
-      source:
-        type: bz2
-        url: http://downloads.sourceforge.net/pcre/pcre-8.35.tar.bz2
+    buildsystem: make
+    autoreconf: true
+    buildoptions: '--prefix=/opt/usr'
+   depname: pcre-8.35
+    type: bz2
+    url: http://downloads.sourceforge.net/pcre/pcre-8.35.tar.bz2
   - gnupg:
-      build:
-        buildsystem: make
-        autoreconf: true
-        buildoptions: '--prefix=/opt/usr'
-      depname: gnupg-2.1.17
-      source:
-        type: bz2
-        url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.17.tar.bz2
+    buildsystem: make
+    autoreconf: true
+    buildoptions: '--prefix=/opt/usr'
+    depname: gnupg-2.1.17
+    type: bz2
+    url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.17.tar.bz2
   - gpgme:
-      build:
-        buildsystem: make
-        autoreconf: true
-        buildoptions: '--prefix=/opt/usr'
-      depname: gpgme
-      source:
-        type: git
-        url: 'git://git.gnupg.org/gpgme.git'
-        branch: 'master'
+    buildsystem: make
+    autoreconf: true
+    buildoptions: '--prefix=/opt/usr'
+    depname: gpgme
+    type: git
+    url: 'https://git.gnupg.org/gpgme'
+    branch: 'master'
+  - qt5webkit:
+    buildsystem: cmake
+    buildoptions: '-DPORT=Qt -DQt5_DIR=/opt/usr/lib/x86_64-linux-gnu/cmake/qt5 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr'
+    depname: qtwebkit
+    scm: git
+    insource: false
+    url: 'http://code.qt.io/qt/qtwebkit'
+    branch: '5.212'
