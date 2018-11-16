@@ -6,7 +6,7 @@ frameworks:
   frameworks:
 dependencies:
   - libgpg-error:
-    buildsystem: make
+    buildsystem: autogen
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: libgpg-error-1.26
