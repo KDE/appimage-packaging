@@ -10,28 +10,28 @@ dependencies:
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: libgpg-error-1.26
-    type: tarball
+    scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.26.tar.bz2
   - libksba:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: libksba-1.3.5
-    type: tarball
+    scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2
   - libassuan:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: libassuan-2.4.3
-    type: tarball
+    scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
   - npth:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: npth-1.3
-    type: tarball
+    scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2
   - libgcrypt:
     buildsystem: autogen
@@ -39,55 +39,55 @@ dependencies:
     insource: true
     buildoptions: '--prefix=/opt/usr'
     depname: libgcrypt
-    type: tarball
+    scm: tarball
     url: https://github.com/gpg/libgcrypt/archive/libgcrypt-1.7.10.tar.gz
   - libtasn1:
     buildsystem: make
     autoreconf: false
     buildoptions: '--prefix=/opt/usr'
     depname: libtasn1-4.10
-    type: tarball
+    scm: tarball
     url: http://ftp.gnu.org/gnu/libtasn1/libtasn1-4.10.tar.gz
   - nettle:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: nettle-3.3
-    type: tarball
+    scm: tarball
     url: https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
   - p11-kit:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: p11-kit-0.23.14
-    type: tarball
+    scm: tarball
     url: https://github.com/p11-glue/p11-kit/releases/download/0.23.14/p11-kit-0.23.14.tar.gz
   - gnutls:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: gnutls-3.5.10
-    type: tarball
+    scm: tarball
     url: ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/gnutls-3.5.10.tar.xz
   - pcre:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: pcre-8.35
-    type: tarball
+    scm: tarball
     url: http://downloads.sourceforge.net/pcre/pcre-8.35.tar.bz2
   - gnupg:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: gnupg-2.1.17
-    type: tarball
+    scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.17.tar.bz2
   - gpgme:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: gpgme
-    type: git
+    scm: git
     url: 'https://git.gnupg.org/gpgme'
     branch: 'master'
