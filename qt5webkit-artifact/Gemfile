@@ -1,0 +1,11 @@
+source 'http://rubygems.org'
+gem 'bundler'
+gem 'docker-api', git: 'https://github.com/swipely/docker-api'
+gem 'fileutils'
+gem 'logger'
+gem 'logger-colors'
+gem 'rspec'
+gem 'rugged', git: 'https://github.com/libgit2/rugged.git', submodules: true
+gem 'test-unit'
+gem 'tty-command'
+gem 'zlib'
