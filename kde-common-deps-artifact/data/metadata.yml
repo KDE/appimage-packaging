@@ -69,7 +69,7 @@ dependencies:
     depname: p11-kit-0.23.14
     scm: tarball
     url: https://github.com/p11-glue/p11-kit/releases/download/0.23.14/p11-kit-0.23.14.tar.gz
-    md5sum: 738af2442331fc22f440df9bee9b062a
+    md5sum: 85e1cdb5fce0087711ba2521975f0420d
   - gnutls:
     buildsystem: make
     autoreconf: true
