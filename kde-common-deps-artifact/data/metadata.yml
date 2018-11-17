@@ -26,7 +26,7 @@ dependencies:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
-    depname: libassuan-2.4.3
+    depname: libassuan-2.5.1
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.5.1.tar.bz2
     md5sum: 4354b7ae296894f232ada226a062d7d7
@@ -34,7 +34,7 @@ dependencies:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
-    depname: npth-1.3
+    depname: npth-1.6
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/npth/npth-1.6.tar.bz2
     md5sum: 375d1a15ad969f32d25f1a7630929854
@@ -51,7 +51,7 @@ dependencies:
     buildsystem: make
     autoreconf: false
     buildoptions: '--prefix=/opt/usr'
-    depname: libtasn1-4.10
+    depname: libtasn1-4.13
     scm: tarball
     url: https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.13.tar.gz
     md5sum: ce2ba4d3088119b48e7531a703669c52
@@ -62,18 +62,19 @@ dependencies:
   #   depname: nettle-3.3
   #   scm: tarball
   #   url: https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
-  # - p11-kit:
-  #   buildsystem: make
-  #   autoreconf: true
-  #   buildoptions: '--prefix=/opt/usr'
-  #   depname: p11-kit-0.23.14
-  #   scm: tarball
-  #   url: https://github.com/p11-glue/p11-kit/releases/download/0.23.14/p11-kit-0.23.14.tar.gz
+  - p11-kit:
+    buildsystem: make
+    autoreconf: true
+    buildoptions: '--prefix=/opt/usr'
+    depname: p11-kit-0.23.2
+    scm: tarball
+    url: http://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
+    md5sum: 738af2442331fc22f440df9bee9b062a
   - gnutls:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
-    depname: gnutls-3.5.10
+    depname: gnutls-3.5.19
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/gnutls/v3.5/gnutls-3.5.19.tar.xz
     md5sum: 1002f4099ce11d785e9811099aaa59a6
@@ -88,7 +89,7 @@ dependencies:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
-    depname: gnupg-2.1.17
+    depname: gnupg-2.2.11
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.11.tar.bz2
     md5sum: e23a896d634e8b81681314780f5158a4
