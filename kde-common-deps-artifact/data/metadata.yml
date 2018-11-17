@@ -71,7 +71,7 @@ dependencies:
   - gnutls:
     buildsystem: make
     autoreconf: true
-    buildoptions: '--prefix=/opt/usr'
+    buildoptions: '--prefix=/opt/usr --with-included-libtasn1'
     depname: gnutls-3.5.10
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/gnutls/v3.5/gnutls-3.5.19.tar.xz
