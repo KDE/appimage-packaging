@@ -66,9 +66,9 @@ dependencies:
     buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
-    depname: p11-kit-0.23.2
+    depname: p11-kit-0.23.14
     scm: tarball
-    url: http://p11-glue.freedesktop.org/releases/p11-kit-0.23.2.tar.gz
+    url: https://github.com/p11-glue/p11-kit/releases/download/0.23.14/p11-kit-0.23.14.tar.gz
     md5sum: 738af2442331fc22f440df9bee9b062a
   - gnutls:
     buildsystem: make
