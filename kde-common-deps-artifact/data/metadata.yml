@@ -50,7 +50,7 @@ dependencies:
   - libtasn1:
     buildsystem: make
     autoreconf: false
-    buildoptions: '--prefix=/opt/usr'
+    buildoptions: '--prefix=/opt/usr --disable-static'
     depname: libtasn1-4.13
     scm: tarball
     url: https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.13.tar.gz
@@ -63,7 +63,7 @@ dependencies:
   #   scm: tarball
   #   url: https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
   - p11-kit:
-    buildsystem: autogen
+    buildsystem: make
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: p11-kit-0.23.14
