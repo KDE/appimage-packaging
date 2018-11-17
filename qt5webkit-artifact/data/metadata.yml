@@ -6,8 +6,9 @@ frameworks:
   frameworks:
 dependencies:
   - qt5webkit:
-    buildsystem: cmake
-    buildoptions: '-DPORT=Qt -DQt5_DIR=/opt/usr/lib/x86_64-linux-gnu/cmake/qt5 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr'
+    buildsystem: qmake
+    buildoptions: 'PREFIX += /opt/usr'
+    profile: Webkit.pro
     depname: qtwebkit
     scm: git
     insource: false
