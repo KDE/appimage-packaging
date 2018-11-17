@@ -6,13 +6,13 @@ frameworks:
   frameworks:
 dependencies:
   - libgpg-error:
-    buildsystem: autoconf
+    buildsystem: autogen
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
-    depname: libgpg-error-1.26
+    depname: libgpg-error-1.32
     insource: true
     scm: tarball
-    url: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.26.tar.bz2
+    url: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.32.tar.bz2
   - libksba:
     buildsystem: make
     autoreconf: true
