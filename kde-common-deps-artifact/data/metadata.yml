@@ -10,7 +10,7 @@ dependencies:
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: libgpg-error-1.26
-    insource: false
+    insource: true
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.26.tar.bz2
   - libksba:
