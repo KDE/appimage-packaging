@@ -8,7 +8,7 @@ dependencies:
   - qt5webkit:
     buildsystem: qmake
     buildoptions: 'PREFIX += /opt/usr'
-    profile: Webkit.pro
+    profile: WebKit.pro
     depname: qtwebkit
     scm: git
     insource: true
