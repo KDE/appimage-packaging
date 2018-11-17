@@ -11,6 +11,6 @@ dependencies:
     profile: Webkit.pro
     depname: qtwebkit
     scm: git
-    insource: false
+    insource: true
     url: 'http://code.qt.io/qt/qtwebkit'
     branch: '5.212'
