@@ -21,6 +21,7 @@ export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PA
 export WORKSPACE=`pwd`
 echo $WORKSPACE
 cd /in
+tar -xvf /in/artifact.tar.gz --strip-components=1 -C /opt
 rbenv init -
 bundle
 bundle show rspec
