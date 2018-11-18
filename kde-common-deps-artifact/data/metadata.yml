@@ -99,5 +99,5 @@ dependencies:
     buildoptions: '--prefix=/opt/usr'
     depname: gpgme
     scm: git
-    url: 'https://git.gnupg.org/gpgme'
+    url: https://dev.gnupg.org/source/gpgme.git
     branch: 'master'
