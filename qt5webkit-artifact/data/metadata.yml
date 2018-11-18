@@ -1,9 +1,8 @@
 name: qt5webkit-artifact
 binary: qt5webkit-artifact
 packages:
+build_kf5: false
 frameworks:
-  build_kf5: false
-  frameworks:
 dependencies:
   - qt5webkit:
     buildsystem: qmake
