@@ -94,7 +94,7 @@ dependencies:
     url: https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.2.11.tar.bz2
     md5sum: e23a896d634e8b81681314780f5158a4
   - gpgme:
-    buildsystem: make
+    buildsystem: autogen
     autoreconf: true
     buildoptions: '--prefix=/opt/usr'
     depname: gpgme
