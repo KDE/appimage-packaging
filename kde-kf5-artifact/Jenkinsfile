@@ -33,7 +33,7 @@ pipeline {
         timestamps()
         buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
     }
-    triggers { upstream(upstreamProjects: 'qt5-artifact,kde-common-deps-artifact', threshold: hudson.model.Result.SUCCESS) }
+    triggers { upstream(upstreamProjects: 'kde-common-deps-artifact', threshold: hudson.model.Result.SUCCESS) }
     stages {
             stage( 'Checkout' ) {
                 steps {
