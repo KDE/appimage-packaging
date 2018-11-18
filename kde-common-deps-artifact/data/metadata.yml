@@ -65,7 +65,7 @@ dependencies:
   - p11-kit:
     buildsystem: autogen
     autoreconf: true
-    buildoptions: '--prefix=/opt/usr'
+    buildoptions: '--prefix=/opt/usr --with-systemd=false'
     depname: p11-kit-0.23.14
     scm: tarball
     url: https://github.com/p11-glue/p11-kit/archive/0.23.14.tar.gz
