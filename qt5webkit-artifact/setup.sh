@@ -23,7 +23,7 @@ echo $WORKSPACE
 cd /in
 tar -xvf /in/artifact.tar.gz --strip-components=1 -C /opt
 rbenv init -
-bundle
+bundle install
 bundle show rspec
 rbenv rehash
 bundle list --paths

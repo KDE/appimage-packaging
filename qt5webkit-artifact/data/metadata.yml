@@ -1,6 +1,7 @@
 name: qt5webkit-artifact
 binary: qt5webkit-artifact
 packages:
+  - ruby-dev
 build_kf5: false
 frameworks:
 dependencies:
