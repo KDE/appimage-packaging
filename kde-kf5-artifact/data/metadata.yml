@@ -2,9 +2,8 @@ name: kf5deps
 binary: kf5deps
 packages:
 dependencies:
+build_kf5: true
 frameworks:
-  build_kf5: true
-  frameworks:
     - polkit-qt-1
     - extra-cmake-modules
     - kcoreaddons
