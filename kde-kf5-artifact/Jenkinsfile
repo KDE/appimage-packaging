@@ -40,7 +40,7 @@ pipeline {
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://gitlab.com/sgclarkkde/appimage-tooling.git']]]
                     copyArtifacts projectName: "kde-common-deps-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
                 }
             }
