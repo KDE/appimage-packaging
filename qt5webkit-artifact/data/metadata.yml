@@ -1,16 +1,14 @@
 name: qt5webkit-artifact
 binary: qt5webkit-artifact
 packages:
-  - ruby-dev
 build_kf5: false
 frameworks:
 dependencies:
   - qt5webkit:
-    buildsystem: qmake
-    buildoptions: 'PREFIX += /opt/usr'
-    profile: WebKit.pro
+    buildsystem: cmake
+    buildoptions: '-DPORT=Qt -DQt5_DIR=/opt/usr/lib/x86_64-linux-gnu/cmake/qt5 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_QTHELP_DOCS=ON -DBUILD_QCH=ON -DCMAKE_CXX_FLAGS:STRING=-pipe -DCMAKE_INSTALL_PREFIX=/opt/usr'
     depname: qtwebkit
     scm: git
-    insource: true
+    insource: false
     url: 'http://code.qt.io/qt/qtwebkit'
     branch: '5.212'
