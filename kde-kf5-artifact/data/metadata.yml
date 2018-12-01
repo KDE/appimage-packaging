@@ -6,123 +6,123 @@ build_kf5: true
 frameworks:
     - polkit-qt-1:
       need_patches: false
-    - extra-cmake-modules
+    - extra-cmake-modules:
       need_patches: false
-    - kcoreaddons
+    - kcoreaddons:
       need_patches: true
       patches:
        - qvariant_ftbfs.patch
-    - ki18n
+    - ki18n:
       need_patches: false
-    - kitemviews
+    - kitemviews:
       need_patches: false
-    - kconfig
+    - kconfig:
       need_patches: false
-    - kauth
+    - kauth:
       need_patches: false
-    - kcodecs
+    - kcodecs:
       need_patches: false
-    - karchive
+    - karchive:
       need_patches: false
-    - kdoctools
+    - kdoctools:
       need_patches: false
-    - kguiaddons
+    - kguiaddons:
       need_patches: false
-    - kwidgetsaddons
+    - kwidgetsaddons:
       need_patches: false
-    - kconfigwidgets
+    - kconfigwidgets:
       need_patches: false
-    - kiconthemes
+    - kiconthemes:
       need_patches: false
-    - kcompletion
+    - kcompletion:
       need_patches: false
-    - kwindowsystem
+    - kwindowsystem:
       need_patches: false
-    - kcrash
+    - kcrash:
       need_patches: false
-    - kdbusaddons
+    - kdbusaddons:
       need_patches: false
-    - kservice
+    - kservice:
       need_patches: false
-    - sonnet
+    - sonnet:
       need_patches: false
-    - ktextwidgets
+    - ktextwidgets:
       need_patches: false
-    - kglobalaccel
+    - kglobalaccel:
       need_patches: false
-    - kxmlgui
+    - kxmlgui:
       need_patches: false
-    - solid
+    - solid:
       need_patches: false
-    - kbookmarks
+    - kbookmarks:
       need_patches: false
-    - kjobwidgets
+    - kjobwidgets:
       need_patches: false
-    - phonon
+    - phonon:
       need_patches: false
-    - phonon-gstreamer
+    - phonon-gstreamer:
       need_patches: false
-    - knotifications
+    - knotifications:
       need_patches: false
-    - kwallet
+    - kwallet:
       need_patches: false
-    - kio
+    - kio:
       need_patches: false
-    - kparts
+    - kparts:
       need_patches: false
-    - kpty
+    - kpty:
       need_patches: false
-    - attica
+    - attica:
       need_patches: false
-    - knewstuff
+    - knewstuff:
       need_patches: false
-    - kitemmodels
+    - kitemmodels:
       need_patches: false
-    - kplotting
+    - kplotting:
       need_patches: false
-    - kdewebkit
+    - kdewebkit:
       need_patches: false
-    - kdesignerplugin
+    - kdesignerplugin:
       need_patches: false
-    - syntax-highlighting
+    - syntax-highlighting:
       need_patches: false
-    - prison
+    - prison:
       need_patches: false
-    - kemoticons
+    - kemoticons:
       need_patches: false
-    - kpackage
+    - kpackage:
       need_patches: false
-    - kdeclarative
+    - kdeclarative:
       need_patches: false
-    - kcmutils
+    - kcmutils:
       need_patches: false
-    - kdecoration
+    - kdecoration:
       need_patches: false
-    - breeze
+    - breeze:
       need_patches: false
-    - kactivities
+    - kactivities:
       need_patches: false
-    - kirigami
+    - kirigami:
       need_patches: false
-    - kwayland
+    - kwayland:
       need_patches: false
-    - plasma-framework
+    - plasma-framework:
       need_patches: false
-    - threadweaver
+    - threadweaver:
       need_patches: false
-    - krunner
+    - krunner:
       need_patches: false
-    - kunitconversion
+    - kunitconversion:
       need_patches: false
-    - kinit
+    - kinit:
       need_patches: false
-    - kded
+    - kded:
       need_patches: false
-    - kdelibs4support
+    - kdelibs4support:
       need_patches: false
-    - knotifyconfig
+    - knotifyconfig:
       need_patches: false
-    - kross
+    - kross:
       need_patches: false
-    - ktexteditor
+    - ktexteditor:
       need_patches: false
