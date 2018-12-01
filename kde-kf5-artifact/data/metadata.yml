@@ -4,6 +4,9 @@ packages:
 dependencies:
 build_kf5: true
 frameworks:
+  - extra-cmake-modules:
+    need_patches: false
+    options: ''
   - attica:
     need_patches: false
     options: ''
@@ -13,9 +16,6 @@ frameworks:
   - breeze-icons:
     need_patches: false
     options: ' -DBINARY_ICONS_RESOURCE=ON'
-  - extra-cmake-modules:
-    need_patches: false
-    options: ''
   - kapidox:
     need_patches: false
     options: ''
