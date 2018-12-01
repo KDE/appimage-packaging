@@ -1,6 +1,6 @@
 name: kde-commondeps-artifact
 binary:
-packages: gtk-doc-tools
+packages:
 frameworks:
   build_kf5: false
   frameworks:
