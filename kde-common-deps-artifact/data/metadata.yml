@@ -14,6 +14,7 @@ dependencies:
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.32.tar.bz2
     md5sum: ef3d928a5a453fa701ecc3bb22be1c64
+    need_patches: false
   - libksba:
     buildsystem: make
     autoreconf: true

@@ -4,6 +4,7 @@ packages:
 frameworks:
   build_kf5: false
   frameworks:
+need_patches: false
 dependencies:
   - qt5:
     buildsystem: custom

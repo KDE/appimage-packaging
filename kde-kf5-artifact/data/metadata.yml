@@ -4,63 +4,125 @@ packages:
 dependencies:
 build_kf5: true
 frameworks:
-    - polkit-qt-1
+    - polkit-qt-1:
+      need_patches: false
     - extra-cmake-modules
+      need_patches: false
     - kcoreaddons
+      need_patches: true
+      patches:
+       - qvariant_ftbfs.patch
     - ki18n
+      need_patches: false
     - kitemviews
+      need_patches: false
     - kconfig
+      need_patches: false
     - kauth
+      need_patches: false
     - kcodecs
+      need_patches: false
     - karchive
+      need_patches: false
     - kdoctools
+      need_patches: false
     - kguiaddons
+      need_patches: false
     - kwidgetsaddons
+      need_patches: false
     - kconfigwidgets
+      need_patches: false
     - kiconthemes
+      need_patches: false
     - kcompletion
+      need_patches: false
     - kwindowsystem
+      need_patches: false
     - kcrash
+      need_patches: false
     - kdbusaddons
+      need_patches: false
     - kservice
+      need_patches: false
     - sonnet
+      need_patches: false
     - ktextwidgets
+      need_patches: false
     - kglobalaccel
+      need_patches: false
     - kxmlgui
+      need_patches: false
     - solid
+      need_patches: false
     - kbookmarks
+      need_patches: false
     - kjobwidgets
+      need_patches: false
     - phonon
+      need_patches: false
     - phonon-gstreamer
+      need_patches: false
     - knotifications
+      need_patches: false
     - kwallet
+      need_patches: false
     - kio
+      need_patches: false
     - kparts
+      need_patches: false
     - kpty
+      need_patches: false
     - attica
+      need_patches: false
     - knewstuff
+      need_patches: false
     - kitemmodels
+      need_patches: false
     - kplotting
+      need_patches: false
     - kdewebkit
+      need_patches: false
     - kdesignerplugin
+      need_patches: false
     - syntax-highlighting
+      need_patches: false
     - prison
+      need_patches: false
     - kemoticons
+      need_patches: false
     - kpackage
+      need_patches: false
     - kdeclarative
+      need_patches: false
     - kcmutils
+      need_patches: false
     - kdecoration
+      need_patches: false
     - breeze
+      need_patches: false
     - kactivities
+      need_patches: false
     - kirigami
+      need_patches: false
     - kwayland
+      need_patches: false
     - plasma-framework
+      need_patches: false
     - threadweaver
+      need_patches: false
     - krunner
+      need_patches: false
     - kunitconversion
+      need_patches: false
     - kinit
+      need_patches: false
     - kded
+      need_patches: false
     - kdelibs4support
+      need_patches: false
     - knotifyconfig
+      need_patches: false
     - kross
+      need_patches: false
     - ktexteditor
+      need_patches: false
