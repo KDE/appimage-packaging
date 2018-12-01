@@ -6,123 +6,183 @@ build_kf5: true
 frameworks:
     - polkit-qt-1:
       need_patches: false
+      options: ''
     - extra-cmake-modules:
       need_patches: false
+      options: ''
     - kcoreaddons:
       need_patches: true
       patches:
        - qvariant_ftbfs.patch
+      options: ''
     - ki18n:
       need_patches: false
+      options: ''
     - kitemviews:
       need_patches: false
+      options: ''
     - kconfig:
       need_patches: false
+      options: ''
     - kauth:
       need_patches: false
+      options: ''
     - kcodecs:
       need_patches: false
+      options: ''
     - karchive:
       need_patches: false
+      options: ''
     - kdoctools:
       need_patches: false
+      options: ''
     - kguiaddons:
       need_patches: false
+      options: ''
     - kwidgetsaddons:
       need_patches: false
+      options: ''
     - kconfigwidgets:
       need_patches: false
+      options: ''
     - kiconthemes:
       need_patches: false
+      options: ''
     - kcompletion:
       need_patches: false
+      options: ''
     - kwindowsystem:
       need_patches: false
+      options: ''
     - kcrash:
       need_patches: false
+      options: ''
     - kdbusaddons:
       need_patches: false
+      options: ''
     - kservice:
       need_patches: false
+      options: ''
     - sonnet:
       need_patches: false
+      options: ''
     - ktextwidgets:
       need_patches: false
+      options: ''
     - kglobalaccel:
       need_patches: false
+      options: ''
     - kxmlgui:
       need_patches: false
+      options: ''
     - solid:
       need_patches: false
+      options: ''
     - kbookmarks:
       need_patches: false
+      options: ''
     - kjobwidgets:
       need_patches: false
+      options: ''
     - phonon:
       need_patches: false
+      options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
     - phonon-gstreamer:
       need_patches: false
+      options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
     - knotifications:
       need_patches: false
+      options: ''
     - kwallet:
       need_patches: false
+      options: ''
     - kio:
       need_patches: false
+      options: ''
     - kparts:
       need_patches: false
+      options: ''
     - kpty:
       need_patches: false
+      options: ''
     - attica:
       need_patches: false
+      options: ''
     - knewstuff:
       need_patches: false
+      options: ''
     - kitemmodels:
       need_patches: false
+      options: ''
     - kplotting:
       need_patches: false
+      options: ''
     - kdewebkit:
       need_patches: false
+      options: ''
     - kdesignerplugin:
       need_patches: false
+      options: ''
     - syntax-highlighting:
       need_patches: false
+      options: ''
     - prison:
       need_patches: false
+      options: ''
     - kemoticons:
       need_patches: false
+      options: ''
     - kpackage:
       need_patches: false
+      options: ''
     - kdeclarative:
       need_patches: false
+      options: ''
     - kcmutils:
       need_patches: false
+      options: ''
     - kdecoration:
       need_patches: false
+      options: ''
     - breeze:
       need_patches: false
+      options: ''
     - kactivities:
       need_patches: false
+      options: ''
     - kirigami:
       need_patches: false
+      options: ''
     - kwayland:
       need_patches: false
+      options: ''
     - plasma-framework:
       need_patches: false
+      options: ''
     - threadweaver:
       need_patches: false
+      options: ''
     - krunner:
       need_patches: false
+      options: ''
     - kunitconversion:
       need_patches: false
+      options: ''
     - kinit:
       need_patches: false
+      options: ''
     - kded:
       need_patches: false
+      options: ''
     - kdelibs4support:
       need_patches: false
+      options: ''
     - knotifyconfig:
       need_patches: false
+      options: ''
     - kross:
       need_patches: false
+      options: ''
     - ktexteditor:
       need_patches: false
+      options: ''
