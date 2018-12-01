@@ -25,7 +25,7 @@ pipeline {
     environment {
         WORKSPACE=pwd()
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-        JOB_NAME="kde-deps-depend-kf5-artifact"
+        JOB_NAME="kde-libs-depend-kf5-artifact"
         RBENV_VERSION="2.5.0"
     }
     options {
