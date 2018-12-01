@@ -2,11 +2,8 @@ name: kde-commondeps-artifact
 binary:
 packages:
 frameworks:
-  build_kf5: true
+  build_kf5: false
   frameworks:
-    - polkit-qt-1:
-      need_patches: false
-      options: ''
 dependencies:
   - libgpg-error:
     buildsystem: autogen

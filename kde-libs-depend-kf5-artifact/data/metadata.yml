@@ -4,6 +4,9 @@ packages:
 dependencies:
 build_kf5: true
 frameworks:
+  - polkit-qt-1:
+      need_patches: false
+      options: ''
   - kdecoration:
       need_patches: false
       options: ''
