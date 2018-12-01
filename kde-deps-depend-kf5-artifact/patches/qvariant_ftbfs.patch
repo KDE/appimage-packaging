@@ -1,0 +1,20 @@
+Description: Fix forward declaration of class QVariant
+ Add include for QVariant to fix build failure. 
+Author:  Scarlett Moore <sgclark@kde.org>
+Forwarded: no
+Applied-Upstream: <version|URL|commit, identifies patches merged upstream, optional>
+Last-Update: 2018-11-30 <YYYY-MM-DD, last update of the meta-information, optional>
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Index: kcoreaddons-5.52.0/src/lib/kaboutdata.h
+===================================================================
+--- kcoreaddons-5.52.0.orig/src/lib/kaboutdata.h	2018-11-03 10:59:12.000000000 -0700
++++ kcoreaddons-5.52.0/src/lib/kaboutdata.h	2018-11-30 09:07:22.780979241 -0700
+@@ -30,6 +30,7 @@
+ #include <QString>
+ #include <QSharedDataPointer>
+ #include <QObject>
++#include <QVariant>
+ 
+ template <class T> class QList;
+ class QCommandLineParser;

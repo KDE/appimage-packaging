@@ -1,0 +1,18 @@
+name: kf5deps
+binary: kf5deps
+packages:
+dependencies:
+build_kf5: true
+frameworks:
+  - kdecoration:
+      need_patches: false
+      options: ''
+  - breeze:
+      need_patches: false
+      options: ''
+  - phonon:
+      need_patches: false
+      options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
+  - phonon-gstreamer:
+      need_patches: false
+      options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
