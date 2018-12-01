@@ -56,13 +56,6 @@ dependencies:
     scm: tarball
     url: https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.13.tar.gz
     md5sum: ce2ba4d3088119b48e7531a703669c52
-  # - nettle:
-  #   buildsystem: make
-  #   autoreconf: true
-  #   buildoptions: '--prefix=/opt/usr'
-  #   depname: nettle-3.3
-  #   scm: tarball
-  #   url: https://ftp.gnu.org/gnu/nettle/nettle-3.3.tar.gz
   - p11-kit:
     buildsystem: autogen
     autoreconf: true
@@ -79,13 +72,6 @@ dependencies:
     scm: tarball
     url: https://www.gnupg.org/ftp/gcrypt/gnutls/v3.5/gnutls-3.5.19.tar.xz
     md5sum: 1002f4099ce11d785e9811099aaa59a6
-  # - pcre:
-  #   buildsystem: make
-  #   autoreconf: true
-  #   buildoptions: '--prefix=/opt/usr'
-  #   depname: pcre-8.35
-  #   scm: tarball
-  #   url: http://downloads.sourceforge.net/pcre/pcre-8.35.tar.bz2
   - gnupg:
     buildsystem: make
     autoreconf: true
@@ -102,3 +88,11 @@ dependencies:
     scm: git
     url: https://dev.gnupg.org/source/gpgme
     branch: 'master'
+  - networkmanager:
+    buildsystem: autogen
+    autoreconf: true
+    buildoptions: '--prefix=/opt/usr'
+    depname: NetworkManager
+    scm: git
+    url: https://gitlab.freedesktop.org/NetworkManager/NetworkManager
+    branch: 'nm-1-4'
