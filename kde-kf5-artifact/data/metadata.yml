@@ -84,7 +84,7 @@ frameworks:
   # - networkmanager-qt:
   #   need_patches: false
   #   options: ''
-  - oxygen-icons:
+  - oxygen-icons5:
     need_patches: false
     options: ''
   - prison:
