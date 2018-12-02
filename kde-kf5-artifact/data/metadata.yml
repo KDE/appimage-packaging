@@ -147,13 +147,13 @@ frameworks:
   - kactivities-stats:
     need_patches: false
     options: ''
-  - kbookmarks:
-    need_patches: false
-    options: ''
   - kcmutils:
     need_patches: false
     options: ''
   - kconfigwidgets:
+    need_patches: false
+    options: ''
+  - kbookmarks:
     need_patches: false
     options: ''
   - kdeclarative:
