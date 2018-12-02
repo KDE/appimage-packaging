@@ -144,9 +144,6 @@ frameworks:
   - syndication:
     need_patches: false
     options: ''
-  - baloo:
-    need_patches: false
-    options: ''
   - kactivities-stats:
     need_patches: false
     options: ''
@@ -190,6 +187,9 @@ frameworks:
     need_patches: false
     options: ''
   - kio:
+    need_patches: false
+    options: ''
+  - baloo:
     need_patches: false
     options: ''
   - knewstuff:
