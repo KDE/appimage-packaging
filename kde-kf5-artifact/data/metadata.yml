@@ -147,10 +147,10 @@ frameworks:
   - kactivities-stats:
     need_patches: false
     options: ''
-  - kcmutils:
+  - kconfigwidgets:
     need_patches: false
     options: ''
-  - kconfigwidgets:
+  - kcmutils:
     need_patches: false
     options: ''
   - kbookmarks:
