@@ -150,9 +150,6 @@ frameworks:
   - kconfigwidgets:
     need_patches: false
     options: ''
-  - kcmutils:
-    need_patches: false
-    options: ''
   - kbookmarks:
     need_patches: false
     options: ''
@@ -178,6 +175,9 @@ frameworks:
     need_patches: false
     options: ''
   - kiconthemes:
+    need_patches: false
+    options: ''
+  - kcmutils:
     need_patches: false
     options: ''
   - qqc2-desktop-style:
