@@ -27,7 +27,7 @@ ls -l /opt/
 rm /in/artifact.tar.gz
 cd /in
 rbenv init -
-bundle
+bundle install 
 bundle show rspec
 rbenv rehash
 bundle list --paths
