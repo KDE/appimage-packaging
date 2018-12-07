@@ -27,6 +27,7 @@ ls -l /opt/
 rm /in/artifact.tar.gz
 cd /in
 rbenv init -
+gem update bundler
 bundle install
 bundle binstubs rspec-core
 bundle show rspec

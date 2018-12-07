@@ -22,6 +22,7 @@ export WORKSPACE=`pwd`
 echo $WORKSPACE
 cd /in
 rbenv init -
+gem update bundler
 bundle install
 bundle binstubs rspec-core
 bundle show rspec
