@@ -94,4 +94,4 @@ dependencies:
     depname: NetworkManager
     scm: git
     url: https://gitlab.freedesktop.org/NetworkManager/NetworkManager
-    branch: 'nm-1-4'
+    branch: 'nm-1-6'
