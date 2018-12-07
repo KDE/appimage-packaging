@@ -29,9 +29,7 @@ frameworks:
     need_patches: false
     options: ''
   - kcoreaddons:
-    need_patches: true
-    patches:
-      - qvariant_ftbfs.patch
+    need_patches: false
     options: ''
   - kdbusaddons:
     need_patches: false
@@ -81,9 +79,9 @@ frameworks:
   - modemmanager-qt:
     need_patches: false
     options: ''
-  # - networkmanager-qt:
-  #   need_patches: false
-  #   options: ''
+  - networkmanager-qt:
+    need_patches: false
+    options: ''
   - oxygen-icons5:
     need_patches: false
     options: ''
