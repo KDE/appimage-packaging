@@ -151,9 +151,6 @@ frameworks:
   - kdesignerplugin:
     need_patches: false
     options: ''
-  - kdesu:
-    need_patches: false
-    options: ''
   - kdewebkit:
     need_patches: false
     options: ''
@@ -206,6 +203,9 @@ frameworks:
     need_patches: false
     options: ''
   - kservice:
+    need_patches: false
+    options: ''
+  - kdesu:
     need_patches: false
     options: ''
   - ktexteditor:
