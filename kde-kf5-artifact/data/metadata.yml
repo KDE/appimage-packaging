@@ -148,9 +148,6 @@ frameworks:
   - kconfigwidgets:
     need_patches: false
     options: ''
-  - kded:
-    need_patches: false
-    options: ''
   - kdesignerplugin:
     need_patches: false
     options: ''
@@ -182,6 +179,9 @@ frameworks:
     need_patches: false
     options: ''
   - kinit:
+    need_patches: false
+    options: ''
+  - kded:
     need_patches: false
     options: ''
   - kio:
