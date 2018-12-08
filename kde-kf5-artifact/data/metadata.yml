@@ -151,9 +151,6 @@ frameworks:
   - kdesignerplugin:
     need_patches: false
     options: ''
-  - kdewebkit:
-    need_patches: false
-    options: ''
   - kemoticons:
     need_patches: false
     options: ''
@@ -182,6 +179,9 @@ frameworks:
     need_patches: false
     options: ''
   - kio:
+    need_patches: false
+    options: ''
+  - kdewebkit:
     need_patches: false
     options: ''
   - baloo:
