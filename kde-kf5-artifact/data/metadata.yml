@@ -151,9 +151,6 @@ frameworks:
   - kdesignerplugin:
     need_patches: false
     options: ''
-  - kemoticons:
-    need_patches: false
-    options: ''
   - kglobalaccel:
     need_patches: false
     options: ''
@@ -203,6 +200,9 @@ frameworks:
     need_patches: false
     options: ''
   - kservice:
+    need_patches: false
+    options: ''
+  - kemoticons:
     need_patches: false
     options: ''
   - kdesu:
