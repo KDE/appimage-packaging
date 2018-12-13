@@ -157,6 +157,9 @@ frameworks:
   - kiconthemes:
     need_patches: false
     options: ''
+  - kxmlgui:
+    need_patches: false
+    options: ''
   - kbookmarks:
     need_patches: false
     options: ''
@@ -215,9 +218,6 @@ frameworks:
     need_patches: false
     options: ''
   - kwallet:
-    need_patches: false
-    options: ''
-  - kxmlgui:
     need_patches: false
     options: ''
   - kxmlrpcclient:
