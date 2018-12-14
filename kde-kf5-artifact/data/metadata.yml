@@ -157,6 +157,12 @@ frameworks:
   - kiconthemes:
     need_patches: false
     options: ''
+  - ktexteditor:
+    need_patches: false
+    options: ''
+  - ktextwidgets:
+    need_patches: false
+    options: ''
   - kxmlgui:
     need_patches: false
     options: ''
@@ -209,12 +215,6 @@ frameworks:
     need_patches: false
     options: ''
   - kdesu:
-    need_patches: false
-    options: ''
-  - ktexteditor:
-    need_patches: false
-    options: ''
-  - ktextwidgets:
     need_patches: false
     options: ''
   - kwallet:
