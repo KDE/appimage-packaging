@@ -47,6 +47,7 @@ pipeline {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
                     sh '''
+                    mkdir ~/.bundle
                     echo "BUNDLE_PATH: ~/vendor/bundle" >> /var/lib/jenkins/.bundle/config
                     echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> /var/lib/jenkins/.bundle/config
                     '''
