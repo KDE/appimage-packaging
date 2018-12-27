@@ -24,6 +24,7 @@ pipeline {
     agent { node { label 'linux' } }
     environment {
         WORKSPACE=pwd()
+        HOME="/var/jenkins_home"
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
         JOB_NAME="qt5webkit-artifact"
         RBENV_VERSION="2.5.0"
@@ -46,10 +47,10 @@ pipeline {
             }
             stage( 'Setup' ) {
                 steps {
-                    sh 'echo "gem: --no-rdoc --no-ri" >> /var/lib/jenkins/.gemrc'
+                    sh 'echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc'
                     sh '''
-                    echo "BUNDLE_PATH: ~/vendor/bundle" >> /var/lib/jenkins/.bundle/config
-                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> /var/lib/jenkins/.bundle/config
+                    echo "BUNDLE_PATH: ~/vendor/bundle" >> $HOME/.bundle/config
+                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> $HOME/.bundle/config
                     '''
                     sh '''#!/usr/bin/env bash
                         set -e
@@ -63,17 +64,17 @@ pipeline {
                             rbenv rehash
                         else
                             echo "Rbenv exists, moving on"
-                            if [[ ! -d /var/lib/jenkins/.rbenv/versions/2.5.0 ]] ; then
+                            if [[ ! -d $HOME/.rbenv/versions/2.5.0 ]] ; then
                                 rbenv install 2.5.0
                                 rbenv rehash
                             fi
                          fi
-                        echo 'eval "$(rbenv init -)"' >> /var/lib/jenkins/.bashrc && rbenv init -
+                        echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc && rbenv init -
                         '''
                     sh '''#!/usr/bin/env bash
                         set -e
-                        if [[ ! -d /var/lib/jenkins/.gem ]] ; then
-                            rm -rfv /var/lib/jenkins/.gem
+                        if [[ ! -d $HOME/.gem ]] ; then
+                            rm -rfv $HOME/.gem
                         fi
                         which ruby
                         ruby -v
