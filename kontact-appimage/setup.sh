@@ -17,7 +17,7 @@
 #
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library.  If not, see <http://www.gnu.org/licenses/>.
-export PATH=/opt/usr/bin:/home/jenkins/.rbenv/bin:/home/jenkins/.rbenv/shims:$PATH
+export PATH=/opt/usr/bin:/var/jenkins_home/.rbenv/bin:/var/jenkins_home/.rbenv/shims:$PATH
 export WORKSPACE=`pwd`
 echo $WORKSPACE
 ls -l /in/
