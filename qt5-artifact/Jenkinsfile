@@ -34,7 +34,6 @@ pipeline {
         timestamps()
         buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
     }
-    triggers { pollSCM('H */4 * * 1-5') }
     stages {
             stage( 'Checkout' ) {
                 steps {
