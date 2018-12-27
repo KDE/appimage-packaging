@@ -157,9 +157,6 @@ frameworks:
   - kiconthemes:
     need_patches: false
     options: ''
-  - kbookmarks:
-    need_patches: false
-    options: ''
   - kcmutils:
     need_patches: false
     options: ''
@@ -170,12 +167,6 @@ frameworks:
     need_patches: false
     options: ''
   - kded:
-    need_patches: false
-    options: ''
-  - kio:
-    need_patches: false
-    options: ''
-  - ktexteditor:
     need_patches: false
     options: ''
   - kdeclarative:
@@ -205,10 +196,19 @@ frameworks:
   - kservice:
     need_patches: false
     options: ''
-  - ktextwidgets:
+  - kxmlgui:
     need_patches: false
     options: ''
-  - kxmlgui:
+  - kbookmarks:
+    need_patches: false
+    options: ''
+  - kio:
+    need_patches: false
+    options: ''
+  - ktexteditor:
+    need_patches: false
+    options: ''
+  - ktextwidgets:
     need_patches: false
     options: ''
   - kemoticons:
