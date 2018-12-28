@@ -160,9 +160,6 @@ frameworks:
   - qqc2-desktop-style:
     need_patches: false
     options: ''
-  - knotifyconfig:
-    need_patches: false
-    options: ''
   - kparts:
     need_patches: false
     options: ''
@@ -191,6 +188,9 @@ frameworks:
     need_patches: false
     options: ''
   - kio:
+    need_patches: false
+    options: ''
+  - knotifyconfig:
     need_patches: false
     options: ''
   - knewstuff:
