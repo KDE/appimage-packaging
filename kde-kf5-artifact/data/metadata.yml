@@ -160,13 +160,13 @@ frameworks:
   - qqc2-desktop-style:
     need_patches: false
     options: ''
-  - kpeople:
-    need_patches: false
-    options: ''
   - krunner:
     need_patches: false
     options: ''
   - kservice:
+    need_patches: false
+    options: ''
+  - kpeople:
     need_patches: false
     options: ''
   - kinit:
