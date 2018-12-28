@@ -166,9 +166,6 @@ frameworks:
   - kpeople:
     need_patches: false
     options: ''
-  - kinit:
-    need_patches: false
-    options: ''
   - kded:
     need_patches: false
     options: ''
@@ -184,9 +181,12 @@ frameworks:
   - kio:
     need_patches: false
     options: ''
+  - kinit:
+    need_patches: false
+    options: ''
   - krunner:
     need_patches: false
-    options: ''    
+    options: ''
   - kparts:
     need_patches: false
     options: ''
