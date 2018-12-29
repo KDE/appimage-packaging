@@ -10,12 +10,6 @@ frameworks:
   - attica:
     need_patches: false
     options: ''
-  - bluez-qt:
-    need_patches: false
-    options: '-DUDEV_RULES_INSTALL_DIR=/opt/usr/lib/udev/rules.d'
-  - breeze-icons:
-    need_patches: false
-    options: ' -DBINARY_ICONS_RESOURCE=ON'
   - kapidox:
     need_patches: false
     options: ''
@@ -40,16 +34,13 @@ frameworks:
   - kguiaddons:
     need_patches: false
     options: ''
-  - kholidays:
-    need_patches: false
-    options: ''
   - ki18n:
     need_patches: false
     options: ''
   - kidletime:
     need_patches: false
     options: ''
-  - kirigami:
+  - kimageformats:
     need_patches: false
     options: ''
   - kitemmodels:
@@ -61,31 +52,13 @@ frameworks:
   - kplotting:
     need_patches: false
     options: ''
-  - syntax-highlighting:
-    need_patches: false
-    options: ''
-  - kuserfeedback:
-    need_patches: false
-    options: ''
-  - kwayland:
-    need_patches: false
-    options: ''
   - kwidgetsaddons:
     need_patches: false
     options: ''
   - kwindowsystem:
     need_patches: false
     options: ''
-  - modemmanager-qt:
-    need_patches: false
-    options: ''
   - networkmanager-qt:
-    need_patches: false
-    options: ''
-  - oxygen-icons5:
-    need_patches: false
-    options: ''
-  - prison:
     need_patches: false
     options: ''
   - solid:
@@ -95,9 +68,6 @@ frameworks:
     need_patches: false
     options: ''
   - threadweaver:
-    need_patches: false
-    options: ''
-  - kactivities:
     need_patches: false
     options: ''
   - kauth:
@@ -112,94 +82,37 @@ frameworks:
   - kdoctools:
     need_patches: false
     options: ''
-  - kfilemetadata:
-    need_patches: false
-    options: ''
-  - kimageformats:
-    need_patches: false
-    options: ''
-  - kjobwidgets:
-    need_patches: false
-    options: ''
-  - phonon:
-    need_patches: false
-    options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
-  - phonon-gstreamer:
-    need_patches: false
-    options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
-  - knotifications:
-    need_patches: false
-    options: ''
-  - kpackage:
-    need_patches: false
-    options: ''
   - kpty:
     need_patches: false
     options: ''
   - kunitconversion:
     need_patches: false
     options: ''
-  - syndication:
-    need_patches: false
-    options: ''
-  - kactivities-stats:
-    need_patches: false
-    options: ''
   - kconfigwidgets:
-    need_patches: false
-    options: ''
-  - kdesignerplugin:
-    need_patches: false
-    options: ''
-  - kglobalaccel:
-    need_patches: false
-    options: ''
-  - kiconthemes:
-    need_patches: false
-    options: ''
-  - qqc2-desktop-style:
     need_patches: false
     options: ''
   - kservice:
     need_patches: false
     options: ''
-  - kpeople:
+  - kglobalaccel:
     need_patches: false
     options: ''
-  - kbookmarks:
+  - kpackage:
     need_patches: false
     options: ''
-  - kio:
+  - kdesu:
     need_patches: false
     options: ''
-  - kinit:
+  - kemoticons:
     need_patches: false
     options: ''
-  - kded:
+  - kiconthemes:
     need_patches: false
     options: ''
-  - krunner:
+  - kjobwidgets:
     need_patches: false
     options: ''
-  - kparts:
-    need_patches: false
-    options: ''
-  - knotifyconfig:
-    need_patches: false
-    options: ''
-  - knewstuff:
-    need_patches: false
-    options: ''
-  - baloo:
-    need_patches: false
-    options: ''
-  - kdewebkit:
-    need_patches: false
-    options: ''
-  - kdeclarative:
-    need_patches: false
-    options: ''
-  - ktexteditor:
+  - knotifications:
     need_patches: false
     options: ''
   - ktextwidgets:
@@ -208,37 +121,106 @@ frameworks:
   - kxmlgui:
     need_patches: false
     options: ''
-  - kcmutils:
-    need_patches: false
-    options: ''
-  - kemoticons:
-    need_patches: false
-    options: ''
-  - kdesu:
+  - kbookmarks:
     need_patches: false
     options: ''
   - kwallet:
     need_patches: false
     options: ''
-  - kxmlrpcclient:
+  - kio:
+    need_patches: false
+    options: ''
+  - kdeclarative:
+    need_patches: false
+    options: ''
+  - kcmutils:
+    need_patches: false
+    options: ''
+  - kirigami:
+    need_patches: false
+    options: ''
+  - knewstuff:
+    need_patches: false
+    options: ''
+  - framework-integration:
+    need_patches: false
+    options: ''
+  - kinit:
+    need_patches: false
+    options: ''
+  - knotifyconfig:
+    need_patches: false
+    options: ''
+  - kparts:
+    need_patches: false
+    options: ''
+  - kactivities:
+    need_patches: false
+    options: ''
+  - kded:
+    need_patches: false
+    options: ''
+  - kdewebkit:
+    need_patches: false
+    options: ''
+  - syntax-highlighting:
+    need_patches: false
+    options: ''
+  - ktexteditor:
+    need_patches: false
+    options: ''
+  - kdesignerplugin:
+    need_patches: false
+    options: ''
+  - kwayland:
     need_patches: false
     options: ''
   - plasma-framework:
     need_patches: false
     options: ''
-  - purpose:
+  - modemmanager-qt:
     need_patches: false
     options: ''
-  - framework-integration:
+  - kpeople:
+    need_patches: false
+    options: ''
+  - kxmlrpcclient:
+    need_patches: false
+    options: ''
+  - bluez-qt:
+    need_patches: false
+    options: '-DUDEV_RULES_INSTALL_DIR=/opt/usr/lib/udev/rules.d'
+  - kfilemetadata:
+    need_patches: false
+    options: ''
+  - baloo:
+    need_patches: false
+    options: ''
+  - breeze-icons:
+    need_patches: false
+    options: ' -DBINARY_ICONS_RESOURCE=ON'
+  - oxygen-icons5:
+    need_patches: false
+    options: ''
+  - kactivities-stats:
+    need_patches: false
+    options: ''
+  - krunner:
+    need_patches: false
+    options: ''
+  - prison:
+    need_patches: false
+    options: ''
+  - qqc2-desktop-style:
+    need_patches: false
+    options: ''
+  - kjs:
     need_patches: false
     options: ''
   - kdelibs4support:
     need_patches: false
     options: ''
   - khtml:
-    need_patches: false
-    options: ''
-  - kjs:
     need_patches: false
     options: ''
   - kjsembed:
@@ -248,5 +230,23 @@ frameworks:
     need_patches: false
     options: ''
   - kross:
+    need_patches: false
+    options: ''
+  - kholidays:
+    need_patches: false
+    options: ''
+  - purpose:
+    need_patches: false
+    options: ''
+  - kuserfeedback:
+    need_patches: false
+    options: ''
+  - phonon:
+    need_patches: false
+    options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
+  - phonon-gstreamer:
+    need_patches: false
+    options: '-DPHONON_BUILD_PHONON4QT5=true  -DPHONON_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT=TRUE '
+  - syndication:
     need_patches: false
     options: ''
