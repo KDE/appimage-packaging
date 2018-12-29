@@ -166,10 +166,10 @@ frameworks:
   - kpeople:
     need_patches: false
     options: ''
-  - kcmutils:
+  - kxmlgui:
     need_patches: false
     options: ''
-  - kxmlgui:
+  - kcmutils:
     need_patches: false
     options: ''
   - kbookmarks:
