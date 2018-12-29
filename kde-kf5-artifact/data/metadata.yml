@@ -166,9 +166,6 @@ frameworks:
   - kpeople:
     need_patches: false
     options: ''
-  - kxmlgui:
-    need_patches: false
-    options: ''
   - kcmutils:
     need_patches: false
     options: ''
@@ -209,6 +206,9 @@ frameworks:
     need_patches: false
     options: ''
   - ktextwidgets:
+    need_patches: false
+    options: ''
+  - kxmlgui:
     need_patches: false
     options: ''
   - kemoticons:
