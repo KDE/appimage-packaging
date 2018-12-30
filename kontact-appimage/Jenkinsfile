@@ -26,7 +26,7 @@ pipeline {
         WORKSPACE=pwd()
         HOME="/var/jenkins_home"
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-        JOB_NAME="kde-appimage-kontact"
+        JOB_NAME="kontact-appimage"
         RBENV_VERSION="2.5.0"
     }
     options {
