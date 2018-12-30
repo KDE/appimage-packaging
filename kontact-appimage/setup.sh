@@ -27,11 +27,11 @@ ls -l /opt/
 rm /in/artifact.tar.gz
 cd /in
 rbenv init -
-gem update bundler
+gem install bundler
 bundle install
 bundle binstubs rspec-core
 bundle show rspec
 rbenv rehash
 bundle list --paths
 bundle env
-bundle exec rspec appimage-template/spec/artifact_recipe_rspec.rb --fail-fast
+bundle exec rspec appimage-template/spec/recipe_rspec.rb --fail-fast
