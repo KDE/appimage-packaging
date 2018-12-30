@@ -59,7 +59,7 @@ dependencies:
     buildoptions: '-DCMAKE_INSTALL_PREFIX:PATH=/opt/usr -DCMAKE_BUILD_TYPE=RELWITHDEBINFO'
     depname: libical
     scm: git
-    url: 'https://github.com/libical/libical.git'
+    url: 'https://github.com/libical/libical'
     branch:  'v2.0.0'
 build_kf5_deps: true
 kf5_deps:
