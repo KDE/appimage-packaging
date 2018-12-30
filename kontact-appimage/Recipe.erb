@@ -28,8 +28,8 @@ rm -f functions.sh
 mkdir /<%= name %>.AppDir/
 
 cd /
-wget https://github.com/probonopd/linuxdeployqt/releases/download/1/linuxdeployqt-1-x86_64.AppImage
-chmod a+x linuxdeployqt-1-x86_64.AppImage
+wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+chmod a+x linuxdeployqt-continuous-x86_64.AppImage
 
 cd /<%= name %>.AppDir
 
@@ -179,7 +179,7 @@ chmod +x AppRun
 mv <%= binary %> ./usr/bin/
 cp <%= binary %>.desktop ./usr/share/applications/
 cd /
-wget "https://github.com/probonopd/AppImageKit/releases/download/knowngood/appimagetool-x86_64.AppImage"
+wget "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
 chmod a+x appimagetool-x86_64.AppImage
 
 ARCH=$(arch)
@@ -189,6 +189,4 @@ APPIMAGEFILENAME="<%= name %>-git$DATE-$ARCH.AppImage"
 
 #Re set LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/opt/usr/lib:/opt/usr/lib/x86_64-linux-gnu:/usr/lib:/usr/lib64
-gpg2 --import /root/.gnupg/appimage.key
-./appimagetool-x86_64.AppImage -v -s -u "zsync|https://s3-eu-central-1.amazonaws.com/ds9-apps/<%= name %>-master-appimage/kmail_latestversion.zsync" /<%= name %>.AppDir /appimage/$APPIMAGEFILENAME
-zsyncmake -u "https://s3-eu-central-1.amazonaws.com/ds9-apps/<%= name %>-master-appimage/$APPIMAGEFILENAME" -o /appimage/<%= name %>_latestversion.zsync /appimage/$APPIMAGEFILENAME
+./appimagetool-x86_64.AppImage -v -s  /<%= name %>.AppDir /appimage/$APPIMAGEFILENAME

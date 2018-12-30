@@ -1,61 +1,47 @@
 name: kontact
 binary: kontact
 packages:
-  #app specifc
-  - xsltproc
-  - libsasl2-dev
-  - libldap2-dev
-  - fonts-noto
-  - unzip
-  - libical-dev
-  - libxapian-dev
-  - xsdcxx
-  - libxerces-c-dev
+build_kf5: true
 frameworks:
-  build_kf5: true
-  frameworks:
-    - gpgmepp
-    - phonon
-    - phonon-gstreamer
-    - kmime
-    - akonadi
-    - akonadi-mime
-    - akonadi-notes
-    - kcontacts
-    - akonadi-contacts
-    - grantleetheme
-    - kpimtextedit
-    - libkleo
-    - kimap
-    - kldap
-    - kcalcore
-    - akonadi-search
-    - libkdepim
-    - pimcommon
-    - kdepim-apps-libs
-    - libgravatar
-    - kidentitymanagement
-    - ksmtp
-    - libkgapi
-    - kmailtransport
-    - kmbox
-    - messagelib
-    - kcalutils
-    - kontactinterface
-    - libksieve
-    - mailimporter
-    - mailcommon
-    - ktnef
-    - kdav
-    - kholidays
-    - kalarmcal
-    - akonadi-calendar
-    - kdiagram
-    - calendarsupport
-    - eventviews
-    - incidenceeditor
-    - kdepim-addons
-    - kmail-account-wizard
+  - gpgmepp
+  - kmime
+  - akonadi
+  - akonadi-mime
+  - akonadi-notes
+  - kcontacts
+  - akonadi-contacts
+  - grantleetheme
+  - kpimtextedit
+  - libkleo
+  - kimap
+  - kldap
+  - kcalcore
+  - akonadi-search
+  - libkdepim
+  - pimcommon
+  - kdepim-apps-libs
+  - libgravatar
+  - kidentitymanagement
+  - ksmtp
+  - libkgapi
+  - kmailtransport
+  - kmbox
+  - messagelib
+  - kcalutils
+  - kontactinterface
+  - libksieve
+  - mailimporter
+  - mailcommon
+  - ktnef
+  - kdav
+  - kalarmcal
+  - akonadi-calendar
+  - kdiagram
+  - calendarsupport
+  - eventviews
+  - incidenceeditor
+  - kdepim-addons
+  - kmail-account-wizard
 type: git
 url: http://anongit.kde.org/kontact
 buildsystem: cmake

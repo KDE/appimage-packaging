@@ -20,7 +20,18 @@
 export PATH=/opt/usr/bin:/var/jenkins_home/.rbenv/bin:/var/jenkins_home/.rbenv/shims:$PATH
 export WORKSPACE=`pwd`
 echo $WORKSPACE
-ls -l /in/
+
+
 tar -xvf /in/artifact.tar.gz --strip-components=1 -C /opt
 ls -l /opt/
-cd /in && rspec appimage-template/spec/recipe_rspec.rb --fail-fast
+rm /in/artifact.tar.gz
+cd /in
+rbenv init -
+gem update bundler
+bundle install
+bundle binstubs rspec-core
+bundle show rspec
+rbenv rehash
+bundle list --paths
+bundle env
+bundle exec rspec appimage-template/spec/artifact_recipe_rspec.rb --fail-fast

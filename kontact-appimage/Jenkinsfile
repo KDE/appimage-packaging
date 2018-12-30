@@ -26,63 +26,76 @@ pipeline {
         WORKSPACE=pwd()
         HOME="/var/jenkins_home"
         PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-        JOB_NAME="kontact-appimage"
+        JOB_NAME="kde-appimage-kontact"
+        RBENV_VERSION="2.5.0"
     }
     options {
         disableConcurrentBuilds()
         timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
     }
-    triggers { pollSCM('H */4 * * 1-5')
-                    upstream(upstreamProjects: 'qt5-artifact,kde-common-deps-artifact,kde-kf5-artifact', threshold: hudson.model.Result.SUCCESS)
-   }
     stages {
             stage( 'Checkout' ) {
                 steps {
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
                     extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
                     checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/sysadmin/appimage-tooling']]]
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://gitlab.com/sgclarkkde/appimage-tooling.git']]]
                     copyArtifacts projectName: "kde-kf5-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
-                    sh "pwd && ls -l"
                 }
             }
             stage( 'Setup' ) {
                 steps {
                     sh 'echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc'
+                    sh '''
+                    echo "BUNDLE_PATH: ~/vendor/bundle" >> $HOME/.bundle/config
+                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> $HOME/.bundle/config
+                    '''
                     sh '''#!/usr/bin/env bash
                         set -e
-                        export PATH=$PATH:$HOME/.rbenv/bin
+                        echo $PATH
                         if [[ ! -d ~/.rbenv ]] ; then
-                        git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-                        git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-                        if [[ ! -d $HOME/.rbenv/versions/2.4.1 ]] ; then
-                            rbenv install 2.4.1
-                        fi
-                        eval "$(rbenv init -)"
-                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
+                            git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                            git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                            git clone git://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
+                            rbenv init -
+                            rbenv install 2.5.0
+                            rbenv rehash
                         else
-                        echo "Rbenv exists, moving on"
-                        if [[ ! -d $HOME/.rbenv/versions/2.4.1 ]] ; then
-                            rbenv install 2.4.1
+                            echo "Rbenv exists, moving on"
+                            if [[ ! -d $HOME/.rbenv/versions/2.5.0 ]] ; then
+                                rbenv install 2.5.0
+                                rbenv rehash
+                            fi
+                         fi
+                        echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc && rbenv init -
+                        '''
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        if [[ ! -d $HOME/.gem ]] ; then
+                            rm -rfv $HOME/.gem
                         fi
-                        eval "$(rbenv init -)"
-                        rbenv local 2.4.1 && gem install bundler && ls -l && bundle install --binstubs && bundle show rspec
-                        cd $JOB_NAME && bundle install
-                        fi
-
+                        which ruby
+                        ruby -v
+                        gem install --no-ri --no-rdoc bundler && rbenv rehash
                         '''
                     }
             }
             stage( 'Build' ) {
                 steps {
-                    sh "cd $JOB_NAME"
-                    sh '''#!/usr/bin/env bash
+                        sh 'rbenv init -'
+                        sh 'which ruby && ruby -v'
+                        sh '''#!/usr/bin/env bash
                         set -e
-                        cd $JOB_NAME
-                        export PATH=$PATH:$HOME/.rbenv/bin
-                        eval "$(rbenv init -)"
-                        rbenv local 2.4.1
-                        bundle exec deploy.rb
+                        echo $PATH
+                        cd $JOB_NAME && chmod +x setup.sh
+                        bundle lock --update
+                        bundle install
+                        bundle show rspec
+                        rbenv rehash
+                        bundle list --paths
+                        bundle env
+                        bundle exec ruby deploy.rb
                         '''
                     }
             }
