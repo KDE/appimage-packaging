@@ -148,7 +148,7 @@ frameworks:
   - knewstuff:
     need_patches: false
     options: ''
-  - framework-integration:
+  - frameworkintegration:
     need_patches: false
     options: ''
   - kinit:
