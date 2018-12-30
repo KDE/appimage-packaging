@@ -4,44 +4,122 @@ packages:
 build_kf5: true
 frameworks:
   - gpgmepp
+  need_patches: false
+  options: ''
   - kmime
+    need_patches: false
+    options: ''
   - akonadi
+    need_patches: false
+    options: ''
   - akonadi-mime
+    need_patches: false
+    options: ''
   - akonadi-notes
+    need_patches: false
+    options: ''
   - kcontacts
+    need_patches: false
+    options: ''
   - akonadi-contacts
+    need_patches: false
+    options: ''
   - grantleetheme
+    need_patches: false
+    options: ''
   - kpimtextedit
+    need_patches: false
+    options: ''
   - libkleo
+    need_patches: false
+    options: ''
   - kimap
+    need_patches: false
+    options: ''
   - kldap
+    need_patches: false
+    options: ''
   - kcalcore
+    need_patches: false
+    options: ''
   - akonadi-search
+    need_patches: false
+    options: ''
   - libkdepim
+    need_patches: false
+    options: ''
   - pimcommon
+    need_patches: false
+    options: ''
   - kdepim-apps-libs
+    need_patches: false
+    options: ''
   - libgravatar
+    need_patches: false
+    options: ''
   - kidentitymanagement
+    need_patches: false
+    options: ''
   - ksmtp
+    need_patches: false
+    options: ''
   - libkgapi
+    need_patches: false
+    options: ''
   - kmailtransport
+    need_patches: false
+    options: ''
   - kmbox
+    need_patches: false
+    options: ''
   - messagelib
+    need_patches: false
+    options: ''
   - kcalutils
+    need_patches: false
+    options: ''
   - kontactinterface
+    need_patches: false
+    options: ''
   - libksieve
+    need_patches: false
+    options: ''
   - mailimporter
+    need_patches: false
+    options: ''
   - mailcommon
+    need_patches: false
+    options: ''
   - ktnef
+    need_patches: false
+    options: ''
   - kdav
+    need_patches: false
+    options: ''
   - kalarmcal
+    need_patches: false
+    options: ''
   - akonadi-calendar
+    need_patches: false
+    options: ''
   - kdiagram
+    need_patches: false
+    options: ''
   - calendarsupport
+    need_patches: false
+    options: ''
   - eventviews
+    need_patches: false
+    options: ''
   - incidenceeditor
+    need_patches: false
+    options: ''
   - kdepim-addons
+    need_patches: false
+    options: ''
   - kmail-account-wizard
+    need_patches: false
+    options: ''  
 type: git
 url: http://anongit.kde.org/kontact
 buildsystem: cmake
