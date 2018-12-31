@@ -3,121 +3,121 @@ binary: kontact
 packages:
 build_kf5: true
 frameworks:
-  - gpgmepp
+  - gpgmepp:
     need_patches: false
     options: ''
-  - kmime
+  - kmime:
     need_patches: false
     options: ''
-  - akonadi
+  - akonadi:
     need_patches: false
     options: ''
-  - akonadi-mime
+  - akonadi-mime:
     need_patches: false
     options: ''
-  - akonadi-notes
+  - akonadi-notes:
     need_patches: false
     options: ''
-  - kcontacts
+  - kcontacts:
     need_patches: false
     options: ''
-  - akonadi-contacts
+  - akonadi-contacts:
     need_patches: false
     options: ''
-  - grantleetheme
+  - grantleetheme:
     need_patches: false
     options: ''
-  - kpimtextedit
+  - kpimtextedit:
     need_patches: false
     options: ''
-  - libkleo
+  - libkleo:
     need_patches: false
     options: ''
-  - kimap
+  - kimap:
     need_patches: false
     options: ''
-  - kldap
+  - kldap:
     need_patches: false
     options: ''
-  - kcalcore
+  - kcalcore:
     need_patches: false
     options: ''
-  - akonadi-search
+  - akonadi-search:
     need_patches: false
     options: ''
-  - libkdepim
+  - libkdepim:
     need_patches: false
     options: ''
-  - pimcommon
+  - pimcommon:
     need_patches: false
     options: ''
-  - kdepim-apps-libs
+  - kdepim-apps-libs:
     need_patches: false
     options: ''
-  - libgravatar
+  - libgravatar:
     need_patches: false
     options: ''
-  - kidentitymanagement
+  - kidentitymanagement:
     need_patches: false
     options: ''
-  - ksmtp
+  - ksmtp:
     need_patches: false
     options: ''
-  - libkgapi
+  - libkgapi:
     need_patches: false
     options: ''
-  - kmailtransport
+  - kmailtransport:
     need_patches: false
     options: ''
-  - kmbox
+  - kmbox:
     need_patches: false
     options: ''
-  - messagelib
+  - messagelib:
     need_patches: false
     options: ''
-  - kcalutils
+  - kcalutils:
     need_patches: false
     options: ''
-  - kontactinterface
+  - kontactinterface:
     need_patches: false
     options: ''
-  - libksieve
+  - libksieve:
     need_patches: false
     options: ''
-  - mailimporter
+  - mailimporter:
     need_patches: false
     options: ''
-  - mailcommon
+  - mailcommon:
     need_patches: false
     options: ''
-  - ktnef
+  - ktnef:
     need_patches: false
     options: ''
-  - kdav
+  - kdav:
     need_patches: false
     options: ''
-  - kalarmcal
+  - kalarmcal:
     need_patches: false
     options: ''
-  - akonadi-calendar
+  - akonadi-calendar:
     need_patches: false
     options: ''
-  - kdiagram
+  - kdiagram:
     need_patches: false
     options: ''
-  - calendarsupport
+  - calendarsupport:
     need_patches: false
     options: ''
-  - eventviews
+  - eventviews:
     need_patches: false
     options: ''
-  - incidenceeditor
+  - incidenceeditor:
     need_patches: false
     options: ''
-  - kdepim-addons
+  - kdepim-addons:
     need_patches: false
     options: ''
-  - kmail-account-wizard
+  - kmail-account-wizard:
     need_patches: false
     options: ''
 type: git
