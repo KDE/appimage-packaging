@@ -10,7 +10,9 @@ frameworks:
     need_patches: false
     options: ''
   - akonadi:
-    need_patches: false
+    need_patches: true
+    patches:
+      - finddependency_kf5_min_version.patch
     options: ''
   - akonadi-mime:
     need_patches: false

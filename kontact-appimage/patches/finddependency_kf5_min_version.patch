@@ -1,0 +1,24 @@
+diff --git a/KF5AkonadiConfig.cmake.in b/KF5AkonadiConfig.cmake.in
+index 19fa5706e..b1042d67a 100644
+--- a/KF5AkonadiConfig.cmake.in
++++ b/KF5AkonadiConfig.cmake.in
+@@ -5,10 +5,10 @@ if(NOT AKONADI_INSTALL_DIR)
+    set(AKONADI_INSTALL_DIR "@CMAKE_INSTALL_PREFIX@")
+ endif(NOT AKONADI_INSTALL_DIR)
+ include(CMakeFindDependencyMacro)
+-find_dependency(KF5Completion "@KF5_VERSION@")
+-find_dependency(KF5XmlGui "@KF5_VERSION@")
+-find_dependency(KF5ItemModels "@KF5_VERSION@")
+-find_dependency(KF5ConfigWidgets "@KF5_VERSION@")
++find_dependency(KF5Completion "@KF5_MIN_VERSION@")
++find_dependency(KF5XmlGui "@KF5_MIN_VERSION@")
++find_dependency(KF5ItemModels "@KF5_MIN_VERSION@")
++find_dependency(KF5ConfigWidgets "@KF5_MIN_VERSION@")
+ 
+ find_dependency(Qt5DBus "@QT_REQUIRED_VERSION@")
+ find_dependency(Qt5Network "@QT_REQUIRED_VERSION@")
+@@ -32,4 +32,3 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
+     # 3.10+ lets us provide more macro names that require automoc.
+     list(APPEND CMAKE_AUTOMOC_MACRO_NAMES AKONADI_AGENTCONFIG_FACTORY)
+ endif()
+-
