@@ -4,8 +4,8 @@ packages:
 build_kf5: true
 frameworks:
   - gpgmepp
-  need_patches: false
-  options: ''
+    need_patches: false
+    options: ''
   - kmime
     need_patches: false
     options: ''
@@ -119,7 +119,7 @@ frameworks:
     options: ''
   - kmail-account-wizard
     need_patches: false
-    options: ''  
+    options: ''
 type: git
 url: http://anongit.kde.org/kontact
 buildsystem: cmake
