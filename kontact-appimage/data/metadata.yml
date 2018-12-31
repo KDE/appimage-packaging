@@ -12,7 +12,7 @@ frameworks:
   - akonadi:
     need_patches: true
     patches:
-      - finddependency_kf5_min_version.patch
+      - finddependency_kf5_min_version_akonadi.patch
     options: ''
   - akonadi-mime:
     need_patches: false
@@ -30,7 +30,9 @@ frameworks:
     need_patches: false
     options: ''
   - kpimtextedit:
-    need_patches: false
+    need_patches: true
+    patches:
+      - finddependency_kf5_min_version_kpimtextedit.patch
     options: ''
   - libkleo:
     need_patches: false
