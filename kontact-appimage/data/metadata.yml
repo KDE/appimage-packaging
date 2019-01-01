@@ -71,7 +71,9 @@ frameworks:
     need_patches: false
     options: ''
   - kmailtransport:
-    need_patches: false
+    need_patches: true
+    patches:
+      - finddependency_kf5_min_version_kmailtransport.patch
     options: ''
   - kmbox:
     need_patches: false
