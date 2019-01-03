@@ -47,7 +47,6 @@ pipeline {
             }
             stage( 'Setup' ) {
                 steps {
-                    sh 'echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc'
                     sh '''
                     echo "BUNDLE_PATH: ~/vendor/bundle" >> $HOME/.bundle/config
                     echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> $HOME/.bundle/config
@@ -78,7 +77,8 @@ pipeline {
                         fi
                         which ruby
                         ruby -v
-                        gem install --no-ri --no-rdoc bundler && rbenv rehash
+                        gem update --system
+                        gem install bundler && rbenv rehash
                         '''
                     }
             }
@@ -102,7 +102,7 @@ pipeline {
             }
             stage('Tests') {
                 steps {
-                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+                     step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
         }
     }

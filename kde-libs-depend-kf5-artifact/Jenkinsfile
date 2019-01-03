@@ -45,70 +45,70 @@ pipeline {
                     copyArtifacts projectName: "kde-kf5-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
                 }
             }
-            stage( 'Setup' ) {
-                steps {
-                    sh 'echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc'
-                    sh '''
-                    echo "BUNDLE_PATH: ~/vendor/bundle" >> $HOME/.bundle/config
-                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> $HOME/.bundle/config
-                    '''
-                    sh '''#!/usr/bin/env bash
-                        set -e
-                        echo $PATH
-                        if [[ ! -d ~/.rbenv ]] ; then
-                            git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-                            git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-                            git clone git://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
-                            rbenv init -
-                            rbenv install 2.5.0
-                            rbenv rehash
-                        else
-                            echo "Rbenv exists, moving on"
-                            if [[ ! -d $HOME/.rbenv/versions/2.5.0 ]] ; then
-                                rbenv install 2.5.0
-                                rbenv rehash
-                            fi
-                         fi
-                        echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc && rbenv init -
-                        '''
-                    sh '''#!/usr/bin/env bash
-                        set -e
-                        if [[ ! -d $HOME/.gem ]] ; then
-                            rm -rfv $HOME/.gem
-                        fi
-                        which ruby
-                        ruby -v
-                        gem install --no-ri --no-rdoc bundler && rbenv rehash
-                        '''
-                    }
-            }
-            stage( 'Build' ) {
-                steps {
-                        sh 'rbenv init -'
-                        sh 'which ruby && ruby -v'
-                        sh '''#!/usr/bin/env bash
-                        set -e
-                        echo $PATH
-                        cd $JOB_NAME && chmod +x setup.sh
-                        bundle lock --update
-                        bundle install
-                        bundle show rspec
-                        rbenv rehash
-                        bundle list --paths
-                        bundle env
-                        bundle exec ruby deploy.rb
-                        '''
-                    }
-            }
-            stage('Tests') {
-                steps {
-                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
-            }
-        }
-    }
-            post {
-                    always {
-                                archiveArtifacts artifacts: "$JOB_NAME/artifacts/*.gz", fingerprint: true
-                    }
-            }
-}
+              stage( 'Setup' ) {
+                  steps {
+                      sh '''
+                      echo "BUNDLE_PATH: ~/vendor/bundle" >> $HOME/.bundle/config
+                      echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> $HOME/.bundle/config
+                      '''
+                      sh '''#!/usr/bin/env bash
+                          set -e
+                          echo $PATH
+                          if [[ ! -d ~/.rbenv ]] ; then
+                              git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                              git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                              git clone git://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
+                              rbenv init -
+                              rbenv install 2.5.0
+                              rbenv rehash
+                          else
+                              echo "Rbenv exists, moving on"
+                              if [[ ! -d $HOME/.rbenv/versions/2.5.0 ]] ; then
+                                  rbenv install 2.5.0
+                                  rbenv rehash
+                              fi
+                           fi
+                          echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc && rbenv init -
+                          '''
+                      sh '''#!/usr/bin/env bash
+                          set -e
+                          if [[ ! -d $HOME/.gem ]] ; then
+                              rm -rfv $HOME/.gem
+                          fi
+                          which ruby
+                          ruby -v
+                          gem update --system
+                          gem install bundler && rbenv rehash
+                          '''
+                      }
+              }
+              stage( 'Build' ) {
+                  steps {
+                          sh 'rbenv init -'
+                          sh 'which ruby && ruby -v'
+                          sh '''#!/usr/bin/env bash
+                          set -e
+                          echo $PATH
+                          cd $JOB_NAME && chmod +x setup.sh
+                          bundle lock --update
+                          bundle install
+                          bundle show rspec
+                          rbenv rehash
+                          bundle list --paths
+                          bundle env
+                          bundle exec ruby deploy.rb
+                          '''
+                      }
+              }
+              stage('Tests') {
+                  steps {
+                       step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+              }
+          }
+      }
+              post {
+                      always {
+                                  archiveArtifacts artifacts: "$JOB_NAME/artifacts/*.gz", fingerprint: true
+                      }
+              }
+  }
