@@ -86,7 +86,7 @@ dependencies:
     depname: gpgme
     scm: git
     url: https://dev.gnupg.org/source/gpgme
-    branch: 'master'
+    branch: 'gpgme-1.9.0'
   - networkmanager:
     buildsystem: autogen
     autoreconf: true
