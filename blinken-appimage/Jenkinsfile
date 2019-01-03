@@ -1,0 +1,113 @@
+#!groovy
+
+/*
+The MIT License
+Copyright (c) 2015-, CloudBees, Inc., and a number of other of contributors
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+pipeline {
+    agent { node { label 'linux' } }
+    environment {
+        WORKSPACE=pwd()
+        HOME="/var/jenkins_home"
+        PATH="/opt/usr/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+        JOB_NAME="blinken-appimage"
+        RBENV_VERSION="2.5.0"
+    }
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
+    }
+    stages {
+            stage( 'Checkout' ) {
+                steps {
+                    checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '.']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://anongit.kde.org/appimage-packaging']]]
+                    checkout changelog: true, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, \
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "$JOB_NAME/appimage-template"]], submoduleCfg: [], userRemoteConfigs: [[url: 'https://gitlab.com/sgclarkkde/appimage-tooling.git']]]
+                    copyArtifacts projectName: "kde-kf5-artifact", selector: lastCompleted(), target: "${env.WORKSPACE}/${env.JOB_NAME}", flatten: true
+                }
+            }
+            stage( 'Setup' ) {
+                steps {
+                    sh '''
+                    echo "BUNDLE_PATH: ~/vendor/bundle" >> $HOME/.bundle/config
+                    echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> $HOME/.bundle/config
+                    '''
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        echo $PATH
+                        if [[ ! -d ~/.rbenv ]] ; then
+                            git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+                            git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+                            git clone git://github.com/carsomyr/rbenv-bundler.git ~/.rbenv/plugins/bundler
+                            rbenv init -
+                            rbenv install 2.5.0
+                            rbenv rehash
+                        else
+                            echo "Rbenv exists, moving on"
+                            if [[ ! -d $HOME/.rbenv/versions/2.5.0 ]] ; then
+                                rbenv install 2.5.0
+                                rbenv rehash
+                            fi
+                         fi
+                        echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc && rbenv init -
+                        '''
+                    sh '''#!/usr/bin/env bash
+                        set -e
+                        if [[ ! -d $HOME/.gem ]] ; then
+                            rm -rfv $HOME/.gem
+                        fi
+                        which ruby
+                        ruby -v
+                        gem update --system
+                        gem install bundler && rbenv rehash
+                        '''
+                    }
+            }
+            stage( 'Build' ) {
+                steps {
+                        sh 'rbenv init -'
+                        sh 'which ruby && ruby -v'
+                        sh '''#!/usr/bin/env bash
+                        set -e
+                        echo $PATH
+                        cd $JOB_NAME && chmod +x setup.sh
+                        bundle lock --update
+                        bundle install
+                        bundle show rspec
+                        rbenv rehash
+                        bundle list --paths
+                        bundle env
+                        bundle exec ruby deploy.rb
+                        '''
+                    }
+            }
+            stage('Tests') {
+                steps {
+                     step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+            }
+        }
+    }
+            post {
+                    always {
+                                archiveArtifacts artifacts: "$JOB_NAME/artifacts/*.gz", fingerprint: true
+                    }
+            }
+}
