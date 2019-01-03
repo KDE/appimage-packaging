@@ -78,6 +78,7 @@ pipeline {
                         fi
                         which ruby
                         ruby -v
+                        gem update --system
                         gem install --no-ri --no-rdoc bundler && rbenv rehash
                         '''
                     }
