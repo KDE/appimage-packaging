@@ -102,7 +102,7 @@ pipeline {
             }
             stage('Tests') {
                 steps {
-                step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
+                     step([$class: 'LogParserPublisher', failBuildOnError: true, projectRulePath: "$JOB_NAME/appimage-template/parser.rules", showGraphs: true, unstableOnWarning: true, useProjectRule: true])
             }
         }
     }
