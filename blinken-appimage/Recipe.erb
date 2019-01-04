@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
-cd /
+cd /in/
 
 # Get helper functions
 wget -q https://github.com/probonopd/AppImages/raw/master/functions.sh -O ./functions.sh
@@ -26,13 +26,13 @@ chmod + x ./functions.sh
 . ./functions.sh
 rm -f functions.sh
 
-mkdir /<%= name %>.AppDir/
+mkdir /in/<%= name %>.AppDir/
 
-cd /
+cd /in/
 wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 chmod a+x linuxdeployqt-continuous-x86_64.AppImage
 
-cd /<%= name %>.AppDir
+cd /in/<%= name %>.AppDir
 
 #Move binary/desktop/icon into AppDir
 mv /opt/usr/bin/<%= binary %> .
