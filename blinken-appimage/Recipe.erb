@@ -46,8 +46,6 @@ mkdir -p ./usr/{share,bin,sbin,lib}
 mkdir ./etc
 #mv /opt/usr/plugins/akonadi/*  ./plugins/
 #mv /opt/usr/plugins/kf5/kio/* ./plugins/
-cp -rfv /opt/usr/lib/grantlee ./plugins/
-cp /opt/usr/lib/x86_64-linux-gnu/grantlee/5.1/*  ./plugins/grantlee/5.1/
 rsync -aruxv --progress /opt/usr/plugins/ ./plugins/
 rsync -aruxv --progress /opt/usr/share/ ./usr/share/
 rsync -aruxv --progress /opt/etc/ ./etc/
@@ -57,29 +55,10 @@ rsync -aruxv --progress /opt/usr/translations/ ./usr/bin/
 cp /usr/lib/x86_64-linux-gnu/pulseaudio/*.so* ./usr/lib/
 
 cp /opt/usr/bin/gst* ./usr/bin/
-mv /opt/usr/bin/*akonadi* ./usr/bin/
-mv /opt/usr/bin/gidmigrator ./usr/bin/
-mv /opt/usr/bin/msg* ./usr/bin/
-cp /opt/usr/bin/k* ./usr/bin/
-mv /opt/usr/bin/asapcat ./usr/bin/
-mv /opt/usr/bin/accountwizard ./usr/bin/
-mv /opt/usr/bin/ispdb ./usr/bin/
-mv /usr/sbin/mysql* ./usr/sbin/
-cp -rfv /usr/share/mysql ./usr/share/
 
-mv /in/mysqld-akonadi ./usr/sbin/
-chmod +x ./usr/sbin/mysqld-akonadi
-mv /in/mysql-global.conf ./etc/xdg/akonadi/
 mkdir ./lib
 rm -rfv /opt/usr/lib/gstreamer-1.0/include
 cp /opt/usr/lib/gstreamer-1.0/* ./lib/
-mv /opt/usr/lib/x86_64-linux-gnu/libfolderarchivesettings.so* ./lib/
-mv /opt/usr/lib/x86_64-linux-gnu/libkmindexreader.so* ./lib/
-mv /opt/usr/lib/x86_64-linux-gnu/libakonadi-singlefileresource.so* ./lib/
-mv /opt/usr/lib/x86_64-linux-gnu/libmaildir.so* ./lib/
-mv /opt/usr/lib/x86_64-linux-gnu/libKPimKDAV.so* ./lib/
-mv /opt/usr/lib/x86_64-linux-gnu/libkwalletbackend5.so* ./lib/
-cp /opt/usr/lib/x86_64-linux-gnu/libKPimGAPICore.so* ./lib/
 cp /usr/lib/x86_64-linux-gnu/pulseaudio/*.so* ./lib/
 cp /lib/x86_64-linux-gnu/libaio* ./lib/
 cp /usr/lib/x86_64-linux-gnu/libhcrypto* ./lib/
