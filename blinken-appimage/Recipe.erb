@@ -45,8 +45,7 @@ mkdir -p ./plugins; cp -rfv /opt/usr/lib/qt5/plugins/phonon4qt5_backend $_
 #mkdir -p ./usr/lib/qml/
 mkdir -p ./usr/{share,bin,sbin,lib}
 mkdir ./etc
-#mv /opt/usr/plugins/akonadi/*  ./plugins/
-#mv /opt/usr/plugins/kf5/kio/* ./plugins/
+mv /opt/usr/plugins/kf5/kio/* ./plugins/
 rsync -aruxv --progress /opt/usr/plugins/ ./plugins/
 rsync -aruxv --progress /opt/usr/share/ ./usr/share/
 rsync -aruxv --progress /opt/etc/ ./etc/
@@ -55,22 +54,14 @@ rsync -aruxv --progress /opt/usr/resources/ ./usr/bin/
 rsync -aruxv --progress /opt/usr/translations/ ./usr/bin/
 cp /usr/lib/x86_64-linux-gnu/pulseaudio/*.so* ./usr/lib/
 
-cp /opt/usr/bin/gst* ./usr/bin/
-
 mkdir ./lib
-rm -rfv /opt/usr/lib/gstreamer-1.0/include
-cp /opt/usr/lib/gstreamer-1.0/* ./lib/
 cp /usr/lib/x86_64-linux-gnu/pulseaudio/*.so* ./lib/
-cp /lib/x86_64-linux-gnu/libaio* ./lib/
-cp /usr/lib/x86_64-linux-gnu/libhcrypto* ./lib/
-cp /usr/lib/x86_64-linux-gnu/liblz4* ./lib/
 cp -rfv /usr/share/mime ./usr/share/
 cp /etc/mime.types ./etc/
 update-mime-database ./usr/share/mime
 
 mv /opt/usr/libexec/Qt* ./usr/bin/ || true
 mv /opt/usr/lib/x86_64-linux-gnu/libexec/kf5/* ./usr/bin/ || true
-mv /opt/usr/libexec/gstreamer-1.0/* ./usr/bin || true
 cp -rfv /opt/usr/lib/x86_64-linux-gnu/* /opt/usr/lib/
 unset LD_LIBRARY_PATH
 ../linuxdeployqt-1-x86_64.AppImage <%= name %> -verbose=3 -bundle-non-qt-libs -qmldir=/opt/usr/qml
@@ -142,15 +133,7 @@ export KF5_LIBEXEC_DIR=\$HERE/usr/bin
 export GST_PLUGIN_PATH=\$HERE/lib
 export GST_PLUGIN_SCANNER=\$HERE/bin
 
-\$HERE/usr/bin/kwalletd
-export AKONADI_DISABLE_AGENT_AUTOSTART
-\$HERE/usr/bin/akonadictl --instance kmail_appimage start
-export AKONADI_INSTANCE=kmail_appimage
-\$HERE/usr/sbin/mysql --protocol=SOCKET --socket=~/.local/share/akonadi/instance/kmail_appimage/socket-$(hostname)/mysql.socket
-<%= binary %> $@
-
-\$HERE/usr/bin/akonadictl --instance kmail_appimage stop
-\$HERE/usr/sbin/mysqladmin --no-defaults --default-character-set=utf8 --socket=~/.local/share/akonadi/instance/kmail_appimage/socket-$(hostname)/mysql.socket shutdown
+\$HERE/usr/bin/blinken
 PGID=$(ps -o pid,pgid,comm | grep AppRun)
 trap "trap - SIGTERM && kill -- -$PGID" SIGINT SIGTERM EXIT
 
